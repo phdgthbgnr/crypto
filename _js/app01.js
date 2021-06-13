@@ -8,7 +8,6 @@
   // const _fz = fz;
   const imgfolder = 'images_omdb/';
   let _base = []; // objet JSON des élements
-  let _years = []; // objet JSON des années
   let results = []; // resultats recherche
   const videoPlayer = _m.$dc('videoPlayer');
   // const videoContainer = _m.$dc('videocontainer');
@@ -28,6 +27,8 @@
   };
   let curRequest = 0;
 
+  let worker = null;
+
   // fuze options par defaut de la recherche par title / tempname
   var fuseDefaultOptions = {
     shouldSort: true,
@@ -42,6 +43,7 @@
 
   window.addEventListener('startLogic', (e) => {
     loadJSON(e.detail.payload);
+    worker = new Worker('_js/workerDecrypt.js');
   });
 
   const getFromLocalStorage = () => {
@@ -88,7 +90,6 @@
           .fin(function () {
             // console.log('fin');
             // init_thumb(_base);
-            // init_yearsList(_years);
             // init_navigation();
             // finally don't work on ie8 (ES5)
           });
@@ -104,7 +105,6 @@
       .then(function (e) {
         let resjson = JSON.parse(e);
         _base = Object.freeze(resjson.data);
-        _years = Object.freeze(resjson.years);
       })
       .fail(function (error) {
         if (error) console('erreur');
@@ -115,8 +115,7 @@
       .fin(function () {
         // console.log('fin');
         init_thumb(_base);
-        init_yearsList(_years);
-        init_navigation();
+        // init_navigation();
         // finally don't work on ie8 (ES5)
       });
   };
@@ -205,19 +204,6 @@
     updateDateView(indexdb);
   };
 
-  // TODO : gérer les inputs quand ils seront dans des labels
-  const init_yearsList = (b) => {
-    let fragment = document.createDocumentFragment();
-    var node = _m.$dc('years').getElementsByTagName('li')[0];
-    b.forEach((e) => {
-      let cloneNode = node.cloneNode(true);
-      cloneNode.firstElementChild.value = e;
-      cloneNode.lastElementChild.innerHTML = e;
-      fragment.append(cloneNode);
-    });
-    node.parentNode.append(fragment);
-  };
-
   const clear_Thumb = () => {
     for (let i = 0; i < nblocks; i++) {
       let chldrn = contener.children[i];
@@ -232,59 +218,29 @@
   };
 
   const init_thumb = (b) => {
-    reinitProgress();
-    const contener = _m.$dc('contener');
-    let ii = b.length > nblocks ? nblocks : b.length;
-    let IDSsql = [];
-    let hasPropItem = has.call(b[0], 'item');
-    let item = null;
-    for (let i = 0; i < ii; i++) {
-      if (hasPropItem) {
-        item = b[index + i].item;
-      } else {
-        item = b[index + i];
-      }
-      let poster = item.poster;
-      let img = poster != null ? imgfolder + poster : 'blank.png';
-      let chldrn = contener.children[i];
-      //
-      chldrn.getElementsByTagName('img')[0].setAttribute('src', img);
-      chldrn.getElementsByClassName('title')[0].innerHTML = item.title;
-      chldrn.getElementsByClassName('year')[0].innerHTML = item.year;
-      chldrn.getElementsByClassName('filename')[0].innerHTML = item.tempname;
-      chldrn.getElementsByClassName('type')[0].innerHTML = item.ext;
-      chldrn.getElementsByClassName('filmid')[0].innerHTML = item.id;
-      chldrn.getElementsByClassName('video-link')[0].dataset.videofile = item.path + '/' + item.filename;
-      chldrn.getElementsByClassName('video-link')[0].dataset.idvideo = item.index;
-      chldrn.getElementsByClassName('video-link')[0].dataset.dbindex = item.id;
-      IDSsql.push(item.id);
-    }
-    let datas = JSON.stringify({ IDS: IDSsql });
-    _m.promises
-      .httpRequest(domain + '_inc/allprogress.php', 'POST', datas, 9000, 'application/json;charset=UTF-8', null, null)
-      .then(function (e) {
-        let r = JSON.parse(e);
-        if (r.percents.length > 0) {
-          r.percents.forEach((o, n, a) => {
-            let p = o.percent / 100;
-            document.getElementById('progress' + o.index).style.transform = 'scaleX(' + p + ')';
-          });
-        }
-      })
-      .fail(function (error) {
-        if (error) console('erreur');
-      })
-      .progress(function (progress) {
-        // console.log(progress);
-      })
-      .fin(function () {
-        // console.log('fin');
-        // init_thumb(_base);
-        // init_yearsList(_years);
-        // init_navigation();
-        // finally don't work on ie8 (ES5)
-      });
+    console.log(CryptoJS);
+    console.log(code.encryptMessage('./PROUT/', 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
+    console.log(code.decryptMessage(b[0].path, 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
+    // worker.postMessage({ file: b[0].file });
   };
+
+  let code = (function () {
+    // https://cdnjs.com/libraries/crypto-js
+    // https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
+    // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+    return {
+      encryptMessage: function (messageToencrypt = '', secretkey = '') {
+        var encryptedMessage = CryptoJS.AES.encrypt(messageToencrypt, secretkey);
+        return encryptedMessage.toString();
+      },
+      decryptMessage: function (encryptedMessage, secretkey) {
+        var decryptedBytes = CryptoJS.AES.decrypt(encryptedMessage, secretkey);
+        var decryptedMessage = decryptedBytes.toString(CryptoJS.enc.Utf8); //CryptoJS.enc.Utf8
+
+        return decryptedMessage;
+      },
+    };
+  })();
 
   const searchInJson = (e, t, c) => {
     let term = _m.$dc('search').value;
@@ -341,7 +297,6 @@
       .fin(function () {
         // console.log('fin');
         // init_thumb(_base);
-        // init_yearsList(_years);
         // init_navigation();
         // finally don't work on ie8 (ES5)
       });
