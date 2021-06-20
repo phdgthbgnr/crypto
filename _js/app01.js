@@ -222,8 +222,8 @@
     // console.log(code.encryptMessage('./PROUT/', 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
     console.log(decryptMsg(b[0].path));
     console.log(decryptMsg(b[0].file));
-    console.log(decryptMsg(b[0].image));
-    document.getElementById('thumb').src = 'data:image/png;base64,' + b[0].image;
+    console.log(decryptMsg(b[100].image));
+    document.getElementById('thumb').src = 'data:image/png;base64,' + decryptMsg(b[200].image);
     // worker.postMessage({ file: b[0].file });
   };
 
