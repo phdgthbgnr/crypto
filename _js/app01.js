@@ -223,7 +223,7 @@
     console.log(decryptMsg(b[0].path));
     console.log(decryptMsg(b[0].file));
     console.log(decryptMsg(b[0].image));
-    document.getElementById('thumb').src = 'data:image/png;base64,';
+    document.getElementById('thumb').src = 'data:image/png;base64,' + b[0].image;
     // worker.postMessage({ file: b[0].file });
   };
 
