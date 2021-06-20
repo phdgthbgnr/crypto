@@ -85,7 +85,7 @@
             if (error) console('erreur');
           })
           .progress(function (progress) {
-            // console.log(progress);
+            console.log(progress);
           })
           .fin(function () {
             // console.log('fin');
@@ -110,7 +110,7 @@
         if (error) console('erreur');
       })
       .progress(function (progress) {
-        // console.log(progress);
+        console.log(progress);
       })
       .fin(function () {
         // console.log('fin');
@@ -218,29 +218,58 @@
   };
 
   const init_thumb = (b) => {
-    console.log(CryptoJS);
-    console.log(code.encryptMessage('./PROUT/', 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
-    console.log(code.decryptMessage(b[0].path, 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
+    // console.log(CryptoJS);
+    // console.log(code.encryptMessage('./PROUT/', 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
+    console.log(decryptMsg(b[0].path));
+    console.log(decryptMsg(b[0].file));
+    console.log(decryptMsg(b[0].image));
     // worker.postMessage({ file: b[0].file });
   };
 
-  let code = (function () {
-    // https://cdnjs.com/libraries/crypto-js
-    // https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
-    // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
-    return {
-      encryptMessage: function (messageToencrypt = '', secretkey = '') {
-        var encryptedMessage = CryptoJS.AES.encrypt(messageToencrypt, secretkey);
-        return encryptedMessage.toString();
-      },
-      decryptMessage: function (encryptedMessage, secretkey) {
-        var decryptedBytes = CryptoJS.AES.decrypt(encryptedMessage, secretkey);
-        var decryptedMessage = decryptedBytes.toString(CryptoJS.enc.Utf8); //CryptoJS.enc.Utf8
+  // let code = (function () {
+  //   // https://cdnjs.com/libraries/crypto-js
+  //   // https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
+  //   // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+  //   return {
+  //     encryptMessage: function (messageToencrypt = '', secretkey = '') {
+  //       var encryptedMessage = CryptoJS.AES.encrypt(messageToencrypt, secretkey);
+  //       return encryptedMessage.toString();
+  //     },
+  //     decryptMessage: function (encryptedMessage, secretkey) {
+  //       var decryptedBytes = CryptoJS.AES.decrypt(encryptedMessage, secretkey);
+  //       var decryptedMessage = decryptedBytes.toString(CryptoJS.enc.Utf8); //CryptoJS.enc.Utf8
 
-        return decryptedMessage;
-      },
-    };
-  })();
+  //       return decryptedMessage;
+  //     },
+  //   };
+  // })();
+
+  function decryptMsg(data) {
+    // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+    master_key = 'xyj6SfUumTamFXOS';
+
+    // Decode the base64 data so we can separate iv and crypt text.
+    var rawData = atob(data);
+    // Split by 16 because my IV size
+    var iv = rawData.substring(0, 16);
+    var crypttext = rawData.substring(16);
+
+    //Parsers
+    crypttext = CryptoJS.enc.Latin1.parse(crypttext);
+    iv = CryptoJS.enc.Latin1.parse(iv);
+    key = CryptoJS.enc.Utf8.parse(master_key);
+
+    // Decrypt
+    var plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+
+    // Can be Utf8 too
+    output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+    return output_plaintext;
+  }
 
   const searchInJson = (e, t, c) => {
     let term = _m.$dc('search').value;
