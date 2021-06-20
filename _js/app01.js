@@ -223,6 +223,7 @@
     console.log(decryptMsg(b[0].path));
     console.log(decryptMsg(b[0].file));
     console.log(decryptMsg(b[0].image));
+    document.getElementById('thumb').src = 'data:image/png;base64,';
     // worker.postMessage({ file: b[0].file });
   };
 
@@ -246,6 +247,7 @@
 
   function decryptMsg(data) {
     // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+    // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
     master_key = 'xyj6SfUumTamFXOS';
 
     // Decode the base64 data so we can separate iv and crypt text.
