@@ -250,34 +250,34 @@
   //   };
   // })();
 
-  function decryptMsg(data) {
-    // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
-    // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
-    // https://cryptojs.gitbook.io/docs/#encoders
-    master_key = 'xyj6SfUumTamFXOS';
+  // function decryptMsg(data) {
+  //   // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+  //   // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
+  //   // https://cryptojs.gitbook.io/docs/#encoders
+  //   master_key = 'xyj6SfUumTamFXOS';
 
-    // Decode the base64 data so we can separate iv and crypt text.
-    var rawData = atob(data);
-    // Split by 16 because my IV size
-    var iv = rawData.substring(0, 16);
-    var crypttext = rawData.substring(16);
+  //   // Decode the base64 data so we can separate iv and crypt text.
+  //   var rawData = atob(data);
+  //   // Split by 16 because my IV size
+  //   var iv = rawData.substring(0, 16);
+  //   var crypttext = rawData.substring(16);
 
-    //Parsers
-    crypttext = CryptoJS.enc.Latin1.parse(crypttext);
-    iv = CryptoJS.enc.Latin1.parse(iv);
-    key = CryptoJS.enc.Utf8.parse(master_key);
+  //   //Parsers
+  //   crypttext = CryptoJS.enc.Latin1.parse(crypttext);
+  //   iv = CryptoJS.enc.Latin1.parse(iv);
+  //   key = CryptoJS.enc.Utf8.parse(master_key);
 
-    // Decrypt
-    var plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
+  //   // Decrypt
+  //   var plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
+  //     iv: iv,
+  //     mode: CryptoJS.mode.CBC,
+  //     padding: CryptoJS.pad.Pkcs7,
+  //   });
 
-    // Can be Utf8 too
-    output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
-    return output_plaintext;
-  }
+  //   // Can be Utf8 too
+  //   output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+  //   return output_plaintext;
+  // }
 
   const searchInJson = (e, t, c) => {
     let term = _m.$dc('search').value;

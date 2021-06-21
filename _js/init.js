@@ -8,7 +8,7 @@
       '_js/q2.js',
       '_js/manageEventsPromises12.js',
       '_js/fuse-6.4.3.js',
-      '_js/crypto-js.js',
+      // '_js/crypto-js.js',
       '_js/app01.js',
       //  '_js/animate-css-grid.js',
     ],
