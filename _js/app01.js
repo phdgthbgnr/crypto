@@ -17,6 +17,7 @@
   const local = window.location.hostname;
   const domain = local == '127.0.0.1' ? 'http://smeserver9/basefilm/' : '';
   const nblocks = 16;
+  const worker = new Worker('_inc/worker.js');
   const videoStatus = {
     title: '',
     timeRounded: 0,
@@ -26,8 +27,6 @@
     time: 0,
   };
   let curRequest = 0;
-
-  let worker = null;
 
   // fuze options par defaut de la recherche par title / tempname
   var fuseDefaultOptions = {
@@ -43,7 +42,6 @@
 
   window.addEventListener('startLogic', (e) => {
     loadJSON(e.detail.payload);
-    worker = new Worker('_js/workerDecrypt.js');
   });
 
   const getFromLocalStorage = () => {
