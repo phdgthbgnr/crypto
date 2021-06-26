@@ -216,20 +216,17 @@
 
   const decryptFromWorker = (e) => {
     console.log('from worker');
-    console.log(e.data);
+    if (e.data.type == 'image') _m.$dc('image01').src = 'data:image/jpeg;charset=latin1;base64, ' + e.data.text;
+    if (e.data.type == 'filename') _m.$dc('title01').innerHTML = e.data.text;
   };
 
   const init_thumb = (b) => {
     console.log('init thumb');
     const worker = new Worker('_js/worker.js');
     worker.onmessage = decryptFromWorker;
-    // console.log(CryptoJS);
-    // console.log(code.encryptMessage('./PROUT/', 'rM64VWFGUg2gMO3J03ssyzszs7Nj57Jrcg4nX-3wlL0='));
-    // console.log(decryptMsg(b[0].path));
-    // console.log(decryptMsg(b[0].file));
-    // console.log(decryptMsg(b[0].image));
-    // document.getElementById('thumb').src = 'data:image/png;base64,' + decryptMsg(b[0].image);
-    worker.postMessage({ file: b[0].file, type: 'filename', id: 1 });
+    worker.postMessage({ cipher: b[0].file, type: 'filename', id: 1 });
+    worker.postMessage({ cipher: b[0].image, type: 'image', id: 1 });
+    worker.postMessage({ cipher: b[0].path, type: 'path', id: 1 });
   };
 
   // let code = (function () {
