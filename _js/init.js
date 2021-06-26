@@ -16,7 +16,7 @@
       //fire event start
       console.log('initafter');
       var event = new CustomEvent('startLogic', {
-        detail: { loaded: true, payload: 'encryptResults.json' },
+        detail: { loaded: true, payload: 'encryptResults16.json' },
       });
       window.dispatchEvent(event);
     },
