@@ -5,7 +5,8 @@ onmessage = function (e) {
   // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
   // https://cryptojs.gitbook.io/docs/#encoders
   var data = e.data.file;
-  master_key = 'xyj6SfUumTamFXOS';
+  // master_key = 'xyj6SfUumTamFXOS'; //16
+  master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 
   // Decode the base64 data so we can separate iv and crypt text.
   var rawData = atob(data);
