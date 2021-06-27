@@ -9,6 +9,7 @@
   const imgfolder = 'images_omdb/';
   let _base = []; // objet JSON des élements
   let results = []; // resultats recherche
+  let _basenameDecryt = [];
   const videoPlayer = _m.$dc('videoPlayer');
   // const videoContainer = _m.$dc('videocontainer');
   const videoSource = videoPlayer.getElementsByTagName('source')[0];
@@ -216,17 +217,26 @@
 
   const decryptFromWorker = (e) => {
     console.log('from worker');
+    console.log(e.data);
     if (e.data.type == 'image') _m.$dc('image01').src = 'data:image/jpeg;charset=latin1;base64, ' + e.data.text;
     if (e.data.type == 'filename') _m.$dc('title01').innerHTML = e.data.text;
+  };
+
+  const decryptNames = (e) => {
+    console.log(e.data);
   };
 
   const init_thumb = (b) => {
     console.log('init thumb');
     const worker = new Worker('_js/worker.js');
+    console.log(b[47]);
     worker.onmessage = decryptFromWorker;
-    worker.postMessage({ cipher: b[0].file, type: 'filename', id: 1 });
-    worker.postMessage({ cipher: b[0].image, type: 'image', id: 1 });
-    worker.postMessage({ cipher: b[0].path, type: 'path', id: 1 });
+    worker.postMessage({ cipher: b[48].file, type: 'filename', id: 1 });
+    worker.postMessage({ cipher: b[48].image, type: 'image', id: 1 });
+    worker.postMessage({ cipher: b[48].path, type: 'path', id: 1 });
+    const worker2 = new Worker('_js/worker2.js');
+    worker2.onmessage = decryptNames;
+    worker2.postMessage(b);
   };
 
   // let code = (function () {

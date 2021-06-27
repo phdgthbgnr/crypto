@@ -39,3 +39,7 @@ body {
 .invisible {
   visibility: hidden;
 }
+
+.title {
+  color: #fff;
+}
