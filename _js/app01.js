@@ -228,15 +228,18 @@
 
   const init_thumb = (b) => {
     console.log('init thumb');
-    const worker = new Worker('_js/worker.js');
-    console.log(b[47]);
-    worker.onmessage = decryptFromWorker;
-    worker.postMessage({ cipher: b[48].file, type: 'filename', id: 1 });
-    worker.postMessage({ cipher: b[48].image, type: 'image', id: 1 });
-    worker.postMessage({ cipher: b[48].path, type: 'path', id: 1 });
-    const worker2 = new Worker('_js/worker2.js');
-    worker2.onmessage = decryptNames;
-    worker2.postMessage(b);
+    for (let i = 0; i < nblocks; i++) {
+      const worker = new Worker('_js/worker.js');
+      worker.onmessage = decryptFromWorker;
+      worker.postMessage([
+        { cipher: b[i].file, type: 'filename', id: 1 },
+        { cipher: b[i].image, type: 'image', id: 1 },
+        { cipher: b[i].path, type: 'path', id: 1 },
+      ]);
+    }
+    // const worker2 = new Worker('_js/worker2.js');
+    // worker2.onmessage = decryptNames;
+    // worker2.postMessage(b);
   };
 
   const searchInJson = (e, t, c) => {

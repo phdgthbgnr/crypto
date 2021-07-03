@@ -1,17 +1,12 @@
 importScripts('crypto-js.js');
 
-onmessage = function (e) {
-  // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
-  // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
-  // https://cryptojs.gitbook.io/docs/#encoders
-  var data = e.data.cipher;
-  // master_key = 'xyj6SfUumTamFXOS'; //16
-  master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
+function decrypt(data) {
+  const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 
   // Decode the base64 data so we can separate iv and crypt text.
-  var rawData = atob(data);
+  let rawData = atob(data);
   // Split by 16 because my IV size
-  var iv = rawData.substring(0, 16);
+  let iv = rawData.substring(0, 16);
   var crypttext = rawData.substring(16);
 
   //Parsers
@@ -20,7 +15,7 @@ onmessage = function (e) {
   key = CryptoJS.enc.Utf8.parse(master_key);
 
   // Decrypt
-  var plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
+  let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
     iv: iv,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
@@ -28,7 +23,21 @@ onmessage = function (e) {
 
   // Can be Utf8 too
   output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
-  postMessage({ text: output_plaintext, id: e.data.id, type: e.data.type });
+  return output_plaintext;
+}
+
+onmessage = function (e) {
+  // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+  // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
+  // https://cryptojs.gitbook.io/docs/#encoders
+
+  let results = [];
+  e.data.forEach((element) => {
+    let text = decrypt(element.cipher);
+    results.push({ text: text, id: element.id, type: element.type });
+  });
+  postMessage(results);
+  this.close();
 };
 
 // var generateWorkerURL = function () {
