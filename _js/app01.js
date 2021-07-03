@@ -216,10 +216,14 @@
   };
 
   const decryptFromWorker = (e) => {
-    console.log('from worker');
-    console.log(e.data);
-    if (e.data.type == 'image') _m.$dc('image01').src = 'data:image/jpeg;charset=latin1;base64, ' + e.data.text;
-    if (e.data.type == 'filename') _m.$dc('title01').innerHTML = e.data.text;
+    e.data.forEach((element) => {
+      if (element.type == 'image') {
+        _m.$dc('image' + element.id).src = 'data:image/jpeg;charset=latin1;base64, ' + element.text;
+      }
+      if (element.type == 'filename') {
+        _m.$dc('title' + element.id).innerHTML = element.text;
+      }
+    });
   };
 
   const decryptNames = (e) => {
@@ -232,9 +236,9 @@
       const worker = new Worker('_js/worker.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
-        { cipher: b[i].file, type: 'filename', id: 1 },
-        { cipher: b[i].image, type: 'image', id: 1 },
-        { cipher: b[i].path, type: 'path', id: 1 },
+        { cipher: b[i].file, type: 'filename', id: b[i].id },
+        { cipher: b[i].image, type: 'image', id: b[i].id },
+        { cipher: b[i].path, type: 'path', id: b[i].id },
       ]);
     }
     // const worker2 = new Worker('_js/worker2.js');
