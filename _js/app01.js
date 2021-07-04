@@ -17,7 +17,7 @@
   // const videosRoot = 'http://openmediavault/films/';
   const local = window.location.hostname;
   const domain = local == '127.0.0.1' ? 'http://smeserver9/basefilm/' : '';
-  const nblocks = 16;
+  const nblocks = 20;
   const videoStatus = {
     title: '',
     timeRounded: 0,
