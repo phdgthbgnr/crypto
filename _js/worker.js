@@ -34,7 +34,7 @@ onmessage = function (e) {
   let results = [];
   e.data.forEach((element) => {
     let text = decrypt(element.cipher);
-    results.push({ text: text, id: element.id, type: element.type });
+    results.push({ text: text, id: element.id, type: element.type, domid: element.domid });
   });
   postMessage(results);
   this.close();

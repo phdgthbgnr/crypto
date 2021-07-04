@@ -47,10 +47,10 @@
   const getFromLocalStorage = () => {
     var ls = localStorage.getItem('videoStatus');
     // if (ls) videoStatus = { ...videoStatus, ...JSON.parse(ls) };
-    if (ls) {
-      _m.addAclass('resume', 'toresume');
-      Object.assign(videoStatus, JSON.parse(ls));
-    }
+    // if (ls) {
+    //   _m.addAclass('resume', 'toresume');
+    //   Object.assign(videoStatus, JSON.parse(ls));
+    // }
   };
 
   videoPlayer.addEventListener(
@@ -113,21 +113,22 @@
       .fin(function () {
         // console.log('fin');
         init_thumb(_base);
-        // init_navigation();
+        init_navigation();
         // finally don't work on ie8 (ES5)
       });
   };
 
   const navigate = (e, t, c) => {
     let id = e.currentTarget.getAttribute('id');
+    console.log(id);
     total = results.length > 0 ? results.length : _base.length;
     if (total < nblocks) return false;
 
     switch (id) {
-      case 'prec':
+      case 'previous':
         index -= nblocks;
         break;
-      case 'suiv':
+      case 'next':
         index += nblocks;
         break;
       case 'deb':
@@ -139,48 +140,9 @@
     }
 
     if (index < 0) index = 0;
-    if (index > total - 16) index = total - 16;
+    if (index > total - nblocks) index = total - nblocks;
     if (results.length == 0) init_thumb(_base);
     if (results.length > 0) init_thumb(results);
-  };
-
-  const searchTerms = (e, t, c) => {
-    let val = e.currentTarget.value;
-    // 1900-2099
-    // ^(19|20)\d{2}$
-    if (val.match('^[0-9]{4}$')) {
-      fuseOptions = {
-        shouldSort: true,
-        threshold: 0.1,
-        location: 0,
-        distance: 200,
-        maxPatternLength: 4,
-        minMatchCharLength: 1,
-        keys: ['year'],
-      };
-      let fuse = new Fz(_base, fuseOptions);
-      results = fuse.search(val);
-      index = 0;
-      clear_Thumb();
-      init_thumb(results);
-    } else {
-      switch (val) {
-        case 'titre':
-          fuseOptions = fuseDefaultOptions;
-          break;
-        case 'acteur':
-          fuseOptions = {
-            shouldSort: true,
-            threshold: 0.1,
-            location: 0,
-            distance: 200,
-            maxPatternLength: 32,
-            minMatchCharLength: 1,
-            keys: ['actors'],
-          };
-          break;
-      }
-    }
   };
 
   const videoLink = (e, t, c) => {
@@ -218,27 +180,37 @@
   const decryptFromWorker = (e) => {
     e.data.forEach((element) => {
       if (element.type == 'image') {
-        _m.$dc('image' + element.id).src = 'data:image/jpeg;charset=latin1;base64, ' + element.text;
+        _m.$dc('image' + element.domid).remove();
+        let img = new Image();
+        img.addEventListener(
+          'load',
+          (e) => {
+            img.setAttribute('id', 'image' + element.domid);
+            _m.$dc('thumb' + element.domid).prepend(img);
+            setTimeout(function () {
+              img.className = 'image';
+            }, 30);
+          },
+          { once: true }
+        );
+        img.src = 'data:image/jpeg;charset=latin1;base64, ' + element.text;
       }
       if (element.type == 'filename') {
-        _m.$dc('title' + element.id).innerHTML = element.text;
+        _m.$dc('title' + element.domid).innerHTML = element.text;
       }
     });
   };
 
-  const decryptNames = (e) => {
-    console.log(e.data);
-  };
-
   const init_thumb = (b) => {
     console.log('init thumb');
-    for (let i = 0; i < nblocks; i++) {
+    let ii = b.length > nblocks ? nblocks : b.length;
+    for (let i = 0; i < ii; i++) {
       const worker = new Worker('_js/worker.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
-        { cipher: b[i].file, type: 'filename', id: b[i].id },
-        { cipher: b[i].image, type: 'image', id: b[i].id },
-        { cipher: b[i].path, type: 'path', id: b[i].id },
+        { cipher: b[index + i].file, type: 'filename', id: b[i].id, domid: i + 1 },
+        { cipher: b[index + i].image, type: 'image', id: b[i].id, domid: i + 1 },
+        { cipher: b[index + i].path, type: 'path', id: b[i].id, domid: i + 1 },
       ]);
     }
     // const worker2 = new Worker('_js/worker2.js');
@@ -260,13 +232,6 @@
       index = 0;
       init_thumb(results);
     }
-  };
-
-  const reinitProgress = () => {
-    const nodesProgress = document.getElementsByClassName('progress');
-    Array.from(nodesProgress).forEach((e) => {
-      e.style.transform = 'scaleX(0)';
-    });
   };
 
   const resumeVideo = (e, t, c) => {
@@ -309,11 +274,11 @@
   const init_navigation = () => {
     // init fuse
     getFromLocalStorage();
-    _m.listenClass('btn_nav', 'click', navigate, true);
+    _m.listenClass('nav', 'click', navigate, true);
     _m.listenClass('video-link', 'click', videoLink, true);
-    _m.listenerAdd('sbmt', 'click', searchInJson, true);
-    _m.listenClass('terms', 'change', searchTerms, true);
-    _m.listenerAdd('resume', 'click', resumeVideo, true);
+    // _m.listenerAdd('sbmt', 'click', searchInJson, true);
+    // _m.listenClass('terms', 'change', searchTerms, true);
+    // _m.listenerAdd('resume', 'click', resumeVideo, true);
     _m.listenerAdd(
       'videocontainer',
       'click',
