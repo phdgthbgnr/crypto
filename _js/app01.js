@@ -178,6 +178,8 @@
   };
 
   const decryptFromWorker = (e) => {
+    let file = null;
+    let path = null;
     e.data.forEach((element) => {
       if (element.type == 'image') {
         _m.$dc('image' + element.domid).remove();
@@ -196,8 +198,13 @@
         img.src = 'data:image/jpeg;charset=latin1;base64, ' + element.text;
       }
       if (element.type == 'filename') {
-        _m.$dc('title' + element.domid).innerHTML = element.text;
+        file = element.text;
+        _m.$dc('title' + element.domid).innerHTML = file;
       }
+      if (element.type == 'path') {
+        path = element.text;
+      }
+      if (path && file) _m.$dc('linkfile' + element.domid).dataset.file = path + file;
     });
   };
 
