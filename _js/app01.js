@@ -53,49 +53,6 @@
     // }
   };
 
-  videoPlayer.addEventListener(
-    'timeupdate',
-    (e) => {
-      var cur = e.currentTarget.currentTime;
-      var fcur = Math.floor(cur);
-      // record every sec
-      if (fcur != videoStatus.timeRounded) {
-        videoStatus.saving = true;
-        videoStatus.timeRounded = fcur;
-        videoStatus.time = cur;
-        localStorage.setItem('videoStatus', JSON.stringify(videoStatus));
-      }
-      // save current progression every 30 sec
-      if (fcur > curRequest && fcur % 30 == 0) {
-        curRequest = fcur;
-        let datas = JSON.stringify({ progress: fcur, id: videoStatus.indexdb, index: videoStatus.idvideo });
-        _m.promises
-          .httpRequest(domain + '_inc/progress.php', 'POST', datas, 9000, 'application/json;charset=UTF-8', null, null)
-          .then(function (e) {
-            let r = JSON.parse(e);
-            if (r.percent === parseFloat(r.percent) && r.status == 1) {
-              let percent = r.percent / 100;
-              document.getElementById('progress' + r.index).style.transform = 'scaleX(' + percent + ')';
-              document.getElementById('thumb' + r.index).getElementsByTagName('a')[0].dataset.elapsed = r.progress;
-            }
-          })
-          .fail(function (error) {
-            if (error) console('erreur');
-          })
-          .progress(function (progress) {
-            console.log(progress);
-          })
-          .fin(function () {
-            // console.log('fin');
-            // init_thumb(_base);
-            // init_navigation();
-            // finally don't work on ie8 (ES5)
-          });
-      }
-    },
-    false
-  );
-
   const loadJSON = (j) => {
     let datas = '';
     _m.promises
@@ -146,13 +103,13 @@
   };
 
   const videoLink = (e, t, c) => {
-    videoSource.setAttribute('src', videosRoot + e.currentTarget.dataset.videofile);
+    videoSource.setAttribute('src', videosRoot + e.currentTarget.dataset.file);
     videoPlayer.load();
-    let indexdb = e.currentTarget.dataset.dbindex;
-    let url = e.currentTarget.dataset.videofile;
-    let idvideo = e.currentTarget.dataset.thumb;
-    let title = _base[idvideo].title;
-    videoStatus.title = title;
+    let indexdb = e.currentTarget.dataset.id;
+    let url = e.currentTarget.dataset.file;
+    let idvideo = e.currentTarget.dataset.domid;
+    // let title = _base[idvideo].title;
+    // videoStatus.title = title;
     videoStatus.url = url;
     videoStatus.idvideo = idvideo;
     videoStatus.indexdb = indexdb;
@@ -241,48 +198,11 @@
     }
   };
 
-  const resumeVideo = (e, t, c) => {
-    // get last video
-    _m.removeAclass('videocontainer', 'videoclose');
-    if (videoSource.getAttribute('src') == '') {
-      videoSource.setAttribute('src', videosRoot + videoStatus.url);
-      videoPlayer.currentTime = videoStatus.time;
-      videoPlayer.load();
-    } else {
-      videoPlayer.play();
-    }
-    // set date last view
-    updateDateView(videoStatus.indexdb);
-    return false;
-  };
-
-  const updateDateView = (id) => {
-    let datas = JSON.stringify({ id: id });
-    _m.promises
-      .httpRequest(domain + '_inc/lastview.php', 'POST', datas, 9000, 'application/json;charset=UTF-8', null, null)
-      .then(function (e) {
-        let r = JSON.parse(e);
-        console.log('update date ', r.message);
-      })
-      .fail(function (error) {
-        if (error) console('erreur');
-      })
-      .progress(function (progress) {
-        // console.log(progress);
-      })
-      .fin(function () {
-        // console.log('fin');
-        // init_thumb(_base);
-        // init_navigation();
-        // finally don't work on ie8 (ES5)
-      });
-  };
-
   const init_navigation = () => {
     // init fuse
     getFromLocalStorage();
     _m.listenClass('nav', 'click', navigate, true);
-    _m.listenClass('video-link', 'click', videoLink, true);
+    _m.listenClass('linkfile', 'click', videoLink, true);
     // _m.listenerAdd('sbmt', 'click', searchInJson, true);
     // _m.listenClass('terms', 'change', searchTerms, true);
     // _m.listenerAdd('resume', 'click', resumeVideo, true);
