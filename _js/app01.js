@@ -118,7 +118,7 @@
     curRequest = 0;
     _m.removeAclass('videocontainer', 'videoclose');
     // set dates last view
-    updateDateView(indexdb);
+    // updateDateView(indexdb);
   };
 
   const clear_Thumb = () => {
@@ -159,7 +159,7 @@
         _m.$dc('title' + element.domid).innerHTML = file;
       }
       if (element.type == 'path') {
-        path = element.text;
+        path = element.text + '/';
       }
       if (path && file) _m.$dc('linkfile' + element.domid).dataset.file = path + file;
     });
