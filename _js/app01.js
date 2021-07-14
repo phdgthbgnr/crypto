@@ -134,6 +134,10 @@
     }
   };
 
+  const testFromWorker = (e) => {
+    console.log(e.data);
+  };
+
   const decryptFromWorker = (e) => {
     let file = null;
     let path = null;
@@ -177,6 +181,28 @@
         { cipher: b[index + i].path, type: 'path', id: b[i].id, domid: i + 1 },
       ]);
     }
+    // const worker = new Worker('_js/worker.js');
+    // worker.onmessage = testFromWorker;
+    // worker.postMessage([
+    //   {
+    //     cipher: 'YVK7x1t1GTqmDvO1MGeU5f7OFFgJMym0I962XJasol1Y60DWUC3bfr1N3ZL8MAwq',
+    //     type: 'filename',
+    //     id: 0,
+    //     domid: 0,
+    //   },
+    //   {
+    //     cipher: 'YVK7x1t1GTqmDvO1MGeU5f7OFFgJMym0I962XJasol1Y60DWUC3bfr1N3ZL8MAwq',
+    //     type: 'image',
+    //     id: 0,
+    //     domid: 0,
+    //   },
+    //   {
+    //     cipher: 'YVK7x1t1GTqmDvO1MGeU5f7OFFgJMym0I962XJasol1Y60DWUC3bfr1N3ZL8MAwq',
+    //     type: 'path',
+    //     id: 0,
+    //     domid: 0,
+    //   },
+    // ]);
     // const worker2 = new Worker('_js/worker2.js');
     // worker2.onmessage = decryptNames;
     // worker2.postMessage(b);
