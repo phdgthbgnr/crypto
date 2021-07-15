@@ -19,3 +19,4 @@
 - https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
 - https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
 - https://cryptojs.gitbook.io/docs/#encoders
+- https://www.it-swarm-fr.com/fr/javascript/comment-decrypter-un-message-avec-cryptojs-aes.-jai-un-exemple-de-travail-ruby/1071180823/
