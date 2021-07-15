@@ -190,18 +190,6 @@
         id: 0,
         domid: 0,
       },
-      {
-        cipher: 's4syDs7qtDmUeNkKLEnrUxj9Wwy4FOKbyMrLm0/EzJyCRA1gVFHht5ITMkV03dwEgjNr2uEbHLzPwJJHjI7QZQ==',
-        type: 'image',
-        id: 0,
-        domid: 0,
-      },
-      {
-        cipher: 's4syDs7qtDmUeNkKLEnrUxj9Wwy4FOKbyMrLm0/EzJyCRA1gVFHht5ITMkV03dwEgjNr2uEbHLzPwJJHjI7QZQ==',
-        type: 'path',
-        id: 0,
-        domid: 0,
-      },
     ]);
     // const worker2 = new Worker('_js/worker2.js');
     // worker2.onmessage = decryptNames;
