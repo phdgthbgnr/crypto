@@ -20,3 +20,8 @@
 - https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
 - https://cryptojs.gitbook.io/docs/#encoders
 - https://www.it-swarm-fr.com/fr/javascript/comment-decrypter-un-message-avec-cryptojs-aes.-jai-un-exemple-de-travail-ruby/1071180823/
+
+- https://www.npmjs.com/package/crypto-js
+- https://tecadmin.net/install-nvm-on-fedora/
+- https://web.dev/module-workers/
+- https://stackoverflow.com/questions/44118600/web-workers-how-to-import-modules
