@@ -32,3 +32,8 @@
 - https://tecadmin.net/install-nvm-on-fedora/
 - https://web.dev/module-workers/
 - https://stackoverflow.com/questions/44118600/web-workers-how-to-import-modules
+
+#### cryptography
+
+- https://nitratine.net/blog/post/encryption-and-decryption-in-python/
+- https://cryptography.io/en/latest/hazmat/backends/#cryptography.hazmat.backends.default_backend
