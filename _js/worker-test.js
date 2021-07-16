@@ -12,7 +12,7 @@ function decrypt(data) {
   //Parsers
   crypttext = CryptoJS.enc.Latin1.parse(crypttext);
   iv2 = CryptoJS.enc.Latin1.parse(iv);
-  key = CryptoJS.enc.Latin1.parse(master_key);
+  key = CryptoJS.enc.Utf8.parse(master_key);
 
   // Decrypt
   let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {

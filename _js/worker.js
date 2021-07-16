@@ -18,7 +18,7 @@ function decrypt(data) {
   let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext }, key, {
     iv: iv,
     mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7,
+    // padding: CryptoJS.pad.Pkcs7,
   });
 
   // Can be Utf8 too
