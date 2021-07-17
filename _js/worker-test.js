@@ -1,35 +1,35 @@
 importScripts('crypto-js.js');
-
 function decrypt(data) {
   const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 
-  // Decode the base64 data so we can separate iv and crypt text.
-  // const rawData = atob(data);
-  // console.log(rawData);
-  // Split by 16 because my IV size
-  const rawData = CryptoJS.enc.Base64.parse(data);
-  // TODO:
-  // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
-  let iv = rawData.substring(0, 16);
-  var crypttext = rawData.substring(16);
+  const rawData = atob(data);
+  const iv = rawData.substring(0, 16);
+  const crypttext = rawData.substring(16);
 
-  console.log(iv);
-  console.log('-------------------');
-  console.log(crypttext);
+  // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
+  // const crypttext = CryptoJS.enc.Base64.parse(data);
+  // const iv = crypttext.clone();
+  // iv.sigBytes = 16;
+  // iv.clamp();
+  // crypttext.words.splice(0, 4); // delete 4 words = 16 bytes
+  // crypttext.sigBytes -= 16;
+
   //Parsers
-  crypttext2 = CryptoJS.enc.Utf8.parse(crypttext);
-  iv2 = CryptoJS.enc.Utf8.parse(iv);
-  key = CryptoJS.enc.Utf8.parse(master_key);
+  const crypttext2 = CryptoJS.enc.Utf8.parse(crypttext);
+  const iv2 = CryptoJS.enc.Utf8.parse(iv);
+  const key = CryptoJS.enc.Utf8.parse(master_key);
+  console.log(crypttext2);
 
   // Decrypt
   let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext2 }, key, {
     iv: iv2,
     mode: CryptoJS.mode.CBC,
-    // padding: CryptoJS.pad.Pkcs7,
+    padding: CryptoJS.pad.Pkcs7,
   });
 
   // Can be Utf8 too
-  output_plaintext = CryptoJS.enc.Utf8.stringify(plaintextArray);
+  output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+  console.log(plaintextArray);
   console.log(output_plaintext);
   return output_plaintext;
 }
