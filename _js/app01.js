@@ -185,7 +185,7 @@
     workertest.onmessage = testFromWorker;
     workertest.postMessage([
       {
-        cipher: 's4syDs7qtDmUeNkKLEnrUxj9Wwy4FOKbyMrLm0/EzJyCRA1gVFHht5ITMkV03dwEgjNr2uEbHLzPwJJHjI7QZQ==',
+        cipher: '5F66CzPyZeyFUj3dScHhA4m+ZrcjNIUK78YPwL9vDgs=',
         type: 'filename',
         id: 0,
         domid: 0,
