@@ -8,6 +8,7 @@ function decrypt(data) {
   // console.log(rawData);
   // Split by 16 because my IV size
   const rawData = CryptoJS.enc.Base64.parse(data);
+  // TODO:
   // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
   let iv = rawData.substring(0, 16);
   var crypttext = rawData.substring(16);
