@@ -27,7 +27,8 @@ function decrypt(data) {
   });
 
   // Can be Utf8 too
-  output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+  decrypt_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+  const output_plaintext = decrypt_plaintext.replace(/\x08/g, '');
   return output_plaintext.trim();
 }
 
