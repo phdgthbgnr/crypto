@@ -15,9 +15,9 @@ function decrypt(data) {
   // crypttext.sigBytes -= 16;
 
   //Parsers
-  const crypttext2 = CryptoJS.enc.Utf8.parse(crypttext);
-  const iv2 = CryptoJS.enc.Utf8.parse(iv);
-  const key = CryptoJS.enc.Utf8.parse(master_key);
+  const crypttext2 = CryptoJS.enc.Latin1.parse(crypttext);
+  const iv2 = CryptoJS.enc.Latin1.parse(iv);
+  const key = CryptoJS.enc.Latin1.parse(master_key);
   console.log(crypttext2);
 
   // Decrypt

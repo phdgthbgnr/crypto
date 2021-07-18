@@ -186,7 +186,7 @@
     workertest.postMessage([
       {
         cipher:
-          'g+6wv2S/a52VtDNnLmljR1cLqpiEfoKMKYeMgd4yKvAbHScP2aOtsG9lE0VMAulA93uIqgy2jv/EwAtoubIYzaExXyIzwgr6t7z0Z0RUdhI=',
+          'YBDa0VTYZphhgj/pSayp0elHt+JlzqOrqyLT4GixSDpvVtIb7tmha5rdwfm82nAjSbEhp1A4OKgkbY/gnUI4Xi7ajUtPU37qa5/bJ+i8r8Y=',
         // cipher: 's4syDs7qtDmUeNkKLEnrUxj9Wwy4FOKbyMrLm0/EzJyCRA1gVFHht5ITMkV03dwEgjNr2uEbHLzPwJJHjI7QZQ==',
         type: 'filename',
         id: 0,
