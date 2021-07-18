@@ -30,8 +30,8 @@ function decrypt(data) {
   // Can be Utf8 too
   output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
   console.log(plaintextArray);
-  console.log(output_plaintext);
-  return output_plaintext;
+  console.log(output_plaintext.trim());
+  return output_plaintext.trim();
 }
 
 onmessage = function (e) {
