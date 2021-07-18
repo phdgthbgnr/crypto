@@ -18,7 +18,6 @@ function decrypt(data) {
   const crypttext2 = CryptoJS.enc.Latin1.parse(crypttext);
   const iv2 = CryptoJS.enc.Latin1.parse(iv);
   const key = CryptoJS.enc.Latin1.parse(master_key);
-  console.log(crypttext2);
 
   // Decrypt
   let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext2 }, key, {
@@ -29,8 +28,6 @@ function decrypt(data) {
 
   // Can be Utf8 too
   output_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
-  console.log(plaintextArray);
-  console.log(output_plaintext.trim());
   return output_plaintext.trim();
 }
 
