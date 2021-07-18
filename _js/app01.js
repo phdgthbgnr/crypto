@@ -173,7 +173,7 @@
     console.log('init thumb');
     let ii = b.length > nblocks ? nblocks : b.length;
     for (let i = 0; i < ii; i++) {
-      const worker = new Worker('_js/worker.js');
+      const worker = new Worker('_js/worker-test.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
         { cipher: b[index + i].file, type: 'filename', id: b[i].id, domid: i + 1 },
@@ -181,21 +181,17 @@
         { cipher: b[index + i].path, type: 'path', id: b[i].id, domid: i + 1 },
       ]);
     }
-    const workertest = new Worker('_js/worker-test.js');
-    workertest.onmessage = testFromWorker;
-    workertest.postMessage([
-      {
-        cipher:
-          'hE14+aV+2tzD5UjTQfDNEbXVH2/12u7+Ox3/7wVk8eqKG6Pagzh2WQUCndYRs9dr3DTt2cTfuhp/EFDNndi0nWyRXl8pvGTJSNiFgOUVHmA=',
-        // '3BSwoULYP10Ls35x4ULe/NdAdZtxV2oOSjZq7iEyZOl6WwalBWQy13KDFGBg/VJcN0/NobVlGSCSJVaYO8SNtRSDPx8eSEmf8RJzQXpD6Dg=',
-        type: 'filename',
-        id: 0,
-        domid: 0,
-      },
-    ]);
-    // const worker2 = new Worker('_js/worker2.js');
-    // worker2.onmessage = decryptNames;
-    // worker2.postMessage(b);
+    // const workertest = new Worker('_js/worker-test.js');
+    // workertest.onmessage = testFromWorker;
+    // workertest.postMessage([
+    //   {
+    //     cipher:
+    //       'hE14+aV+2tzD5UjTQfDNEbXVH2/12u7+Ox3/7wVk8eqKG6Pagzh2WQUCndYRs9dr3DTt2cTfuhp/EFDNndi0nWyRXl8pvGTJSNiFgOUVHmA=',
+    //     type: 'filename',
+    //     id: 0,
+    //     domid: 0,
+    //   },
+    // ]);
   };
 
   const searchInJson = (e, t, c) => {
