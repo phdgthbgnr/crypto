@@ -28,7 +28,7 @@ function decrypt(data) {
 
   // Can be Utf8 too
   decrypt_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
-  const output_plaintext = decrypt_plaintext.replace(/\x08/g, '');
+  const output_plaintext = decrypt_plaintext.replace(/\x08|\x0F|\x04/g, '');
   return output_plaintext.trim();
 }
 
