@@ -33,10 +33,6 @@ function decrypt(data) {
 }
 
 onmessage = function (e) {
-  // https://stackoverflow.com/questions/30990129/encrypt-in-python-decrypt-in-javascript
-  // https://steemit.com/missing/@tkgcci/aes-valueerror-input-strings-must-be-multiple-of-16-in-length
-  // https://cryptojs.gitbook.io/docs/#encoders
-
   let results = [];
   e.data.forEach((element) => {
     let text = decrypt(element.cipher);
