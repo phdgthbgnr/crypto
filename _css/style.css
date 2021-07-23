@@ -122,9 +122,14 @@ button.linkfile:hover {
   justify-content: center;
 }
 
-.nav:first-child {
+.nav {
   margin-right: 20px;
   border: 1px solid red;
+}
+
+.nav:last-child {
+  margin-right: 0;
+  /* border: 1px solid red; */
 }
 
 .navigation .nav {
