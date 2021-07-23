@@ -88,10 +88,10 @@
       case 'next':
         index += nblocks;
         break;
-      case 'deb':
+      case 'first':
         index = 0;
         break;
-      case 'fin':
+      case 'last':
         index = total - nblocks;
         break;
     }
