@@ -7,7 +7,8 @@
   const has = Object.prototype.hasOwnProperty;
   // const _fz = fz;
   const imgfolder = 'images_omdb/';
-  let _base = []; // objet JSON des élements
+  let _base = []; // objet JSON des élements encryptés
+  let _decryptBase = []; // objet JSON des élements decryptés (id/filename)
   let results = []; // resultats recherche
   let _basenameDecryt = [];
   const videoPlayer = _m.$dc('videoPlayer');
@@ -193,6 +194,13 @@
     //   },
     // ]);
   };
+
+  /**
+   *
+   * @param {*} b encrypted base JSON
+   * create a new json object with id and decrypted filename for search
+   */
+  const createDecryptJSON = (b) => {};
 
   const searchInJson = (e, t, c) => {
     let term = _m.$dc('search').value;
