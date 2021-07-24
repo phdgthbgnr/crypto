@@ -173,7 +173,7 @@
     console.log('init thumb');
     let ii = b.length > nblocks ? nblocks : b.length;
     for (let i = 0; i < ii; i++) {
-      const worker = new Worker('_js/worker-test.js');
+      const worker = new Worker('_js/worker.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
         { cipher: b[index + i].file, type: 'filename', id: b[i].id, domid: i + 1 },
