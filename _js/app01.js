@@ -14,8 +14,8 @@
   const videoPlayer = _m.$dc('videoPlayer');
   // const videoContainer = _m.$dc('videocontainer');
   const videoSource = videoPlayer.getElementsByTagName('source')[0];
-  const videosRoot = 'http://raspberrypi/films/';
-  // const videosRoot = 'http://openmediavault/films/';
+  // const videosRoot = 'http://raspberrypi/films/';
+  const videosRoot = 'http://192.168.1.11/films/';
   const local = window.location.hostname;
   const domain = local == '127.0.0.1' ? 'http://smeserver9/basefilm/' : '';
   const nblocks = 20;
