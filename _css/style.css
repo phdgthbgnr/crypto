@@ -94,6 +94,16 @@ body {
   order: -1;
 }
 
+.ids {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #fff;
+  color: #000;
+  padding: 3px;
+  border-radius: 50%;
+}
+
 button.linkfile {
   position: absolute;
   width: 100%;

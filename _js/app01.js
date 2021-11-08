@@ -78,7 +78,6 @@
 
   const navigate = (e, t, c) => {
     let id = e.currentTarget.getAttribute('id');
-    console.log(id);
     total = results.length > 0 ? results.length : _base.length;
     if (total < nblocks) return false;
 
@@ -96,7 +95,6 @@
         index = total - nblocks;
         break;
     }
-
     if (index < 0) index = 0;
     if (index > total - nblocks) index = total - nblocks;
     if (results.length == 0) init_thumb(_base);
@@ -162,6 +160,7 @@
       if (element.type == 'filename') {
         file = element.text;
         _m.$dc('title' + element.domid).innerHTML = file;
+        _m.$dc('ids' + element.domid).innerHTML = element.id;
       }
       if (element.type == 'path') {
         path = element.text + '/';
@@ -177,9 +176,9 @@
       const worker = new Worker('_js/worker.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
-        { cipher: b[index + i].file, type: 'filename', id: b[i].id, domid: i + 1 },
-        { cipher: b[index + i].image, type: 'image', id: b[i].id, domid: i + 1 },
-        { cipher: b[index + i].path, type: 'path', id: b[i].id, domid: i + 1 },
+        { cipher: b[index + i].file, type: 'filename', id: b[index + i].id, domid: i + 1 },
+        { cipher: b[index + i].image, type: 'image', id: b[index + i].id, domid: i + 1 },
+        { cipher: b[index + i].path, type: 'path', id: b[index + i].id, domid: i + 1 },
       ]);
     }
     // const workertest = new Worker('_js/worker-test.js');
