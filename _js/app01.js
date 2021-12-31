@@ -8,16 +8,16 @@
   // const _fz = fz;
   const imgfolder = 'images_omdb/';
   let _base = []; // objet JSON des élements encryptés
-  let _decryptBase = []; // objet JSON des élements decryptés (id/filename)
+  // let _decryptBase = []; // objet JSON des élements decryptés (id/filename)
   let results = []; // resultats recherche
-  let _basenameDecryt = [];
+  // let _basenameDecryt = [];
   const videoPlayer = _m.$dc('videoPlayer');
   // const videoContainer = _m.$dc('videocontainer');
   const videoSource = videoPlayer.getElementsByTagName('source')[0];
   // const videosRoot = 'http://raspberrypi/films/';
   const videosRoot = 'http://192.168.1.11/films/';
-  const local = window.location.hostname;
-  const domain = local == '127.0.0.1' ? 'http://smeserver9/basefilm/' : '';
+  // const local = window.location.hostname;
+  // const domain = local == '127.0.0.1' ? 'http://smeserver9/basefilm/' : '';
   const nblocks = 20;
   const videoStatus = {
     title: '',
@@ -69,7 +69,6 @@
         console.log(progress);
       })
       .fin(function () {
-        // console.log('fin');
         init_thumb(_base);
         init_navigation();
         // finally don't work on ie8 (ES5)
@@ -133,10 +132,6 @@
     }
   };
 
-  const testFromWorker = (e) => {
-    console.log(e.data);
-  };
-
   const decryptFromWorker = (e) => {
     let file = null;
     let path = null;
@@ -181,17 +176,6 @@
         { cipher: b[index + i].path, type: 'path', id: b[index + i].id, domid: i + 1 },
       ]);
     }
-    // const workertest = new Worker('_js/worker-test.js');
-    // workertest.onmessage = testFromWorker;
-    // workertest.postMessage([
-    //   {
-    //     cipher:
-    //       'hE14+aV+2tzD5UjTQfDNEbXVH2/12u7+Ox3/7wVk8eqKG6Pagzh2WQUCndYRs9dr3DTt2cTfuhp/EFDNndi0nWyRXl8pvGTJSNiFgOUVHmA=',
-    //     type: 'filename',
-    //     id: 0,
-    //     domid: 0,
-    //   },
-    // ]);
   };
 
   /**
