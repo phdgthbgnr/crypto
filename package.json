@@ -1,0 +1,22 @@
+{
+  "name": "testfilm",
+  "version": "1.0.0",
+  "description": "- Username: < type your username >\r - Password: < type your password >",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://usergit1@smeserver9/git/testfilm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "volta": {
+    "node": "14.18.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
