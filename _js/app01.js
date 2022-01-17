@@ -141,6 +141,7 @@
     let file = null;
     let path = null;
     e.data.forEach((element) => {
+      console.log(element.id);
       if (element.type == 'image') {
         _m.$dc('image' + element.domid).remove();
         let img = new Image();
@@ -159,8 +160,8 @@
       }
       if (element.type == 'filename') {
         file = element.text;
-        _m.$dc('title' + element.domid).innerHTML = file;
         _m.$dc('ids' + element.domid).innerHTML = element.id;
+        _m.$dc('title' + element.domid).innerHTML = file;
       }
       if (element.type == 'path') {
         path = element.text + '/';
