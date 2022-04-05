@@ -4,7 +4,9 @@
   "description": "- Username: < type your username >\r - Password: < type your password >",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "webpack server",
+    "build": "webpack build"
   },
   "repository": {
     "type": "git",

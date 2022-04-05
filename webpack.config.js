@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
+
   entry: '.src/_js/app.js',
   output: {
     filename: 'script.js',
@@ -18,5 +19,9 @@ module.exports = {
         },
       },
     ],
+  },
+
+  devServer: {
+    contentBase: './public',
   },
 };
