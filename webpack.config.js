@@ -1,29 +1,31 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
 
   entry: './src/_js/app.js',
   output: {
+    path: path.resolve(__dirname, './public'),
     filename: 'script.js',
-    path: path.resolve(__dirname, 'public'),
   },
 
-  modules: {
+  module: {
     rules: [
       {
         test: /\.js$/,
-        excludes: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        exclude: /node_modules/,
+        use: ['babel-loader'],
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['*', '.js'],
   },
 
   devtool: 'source-map',
 
   devServer: {
-    contentBase: './public',
+    static: path.resolve(__dirname, './public'),
   },
 };
