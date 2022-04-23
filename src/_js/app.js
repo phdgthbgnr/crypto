@@ -1,6 +1,6 @@
 'use strict';
 import Alpine from 'alpinejs';
-import posts from './com/test';
+import Posts from './com/posts';
 import '../_css/style.scss';
 
 // const posts = [
@@ -12,9 +12,9 @@ import '../_css/style.scss';
 //   { title: 'title 6' },
 // ];
 
-console.log(posts);
+console.log(Posts());
 
-Alpine.data('posts', posts);
+Alpine.data('Posts', Posts);
 
 // Alpine.magic('json', () => {
 //   return posts;
