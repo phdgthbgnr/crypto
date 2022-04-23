@@ -39,6 +39,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "alpinejs": "^3.9.6"
+    "alpinejs": "^3.9.6",
+    "axios": "^0.26.1"
   }
 }
