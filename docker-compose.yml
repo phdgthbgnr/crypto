@@ -18,6 +18,8 @@ services:
       - ALLOW_OVERRIDE=true
     working_dir: /var/www/html
     ports:
-      - "8181:80"
+      - "8081:80"
     volumes:
-      - ./_inc/:/var/www/html
+      - /home/userp/Documents/dockers/testfilm/vhosts/:/etc/apache2/sites-enabled
+      - /home/userp/Documents/dockers/testfilm/_inc/:/var/www/html
+  
