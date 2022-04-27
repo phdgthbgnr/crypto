@@ -13,7 +13,7 @@ services:
   web:
     depends_on:
       - db
-    image: php:7.4-apache
+    image: php7.4-mysql:latest
     environment:
       - ALLOW_OVERRIDE=true
     working_dir: /var/www/html
