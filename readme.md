@@ -17,6 +17,14 @@
 
 #### smerver9
 
+#### portainer
+
+https://localhost:9443
+
+#### docker
+
+sudo systemctl start docker
+
 #### localhost
 
 - https://cdnjs.com/libraries/crypto-js
@@ -40,7 +48,9 @@
 - https://cryptography.io/en/latest/hazmat/primitives/symmetric-encryption/
 
 #### Webpack
+
 - https://www.robinwieruch.de/webpack-babel-setup-tutorial/
 
 #### Alpinejs
+
 - https://alpinejs.dev/essentials/installation
