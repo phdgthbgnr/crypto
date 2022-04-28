@@ -13,17 +13,29 @@
 - Username: < type your username >
 - Password: < type your password >
 
-### mysql
-
 #### smerver9
+
+#### mysql
+
+user: otherfilms,
+password: JHgfT765frSX,
+host: smeserver9,
+database: otherfilms_test,
 
 #### portainer
 
-https://localhost:9443
+- https://localhost:9443
 
 #### docker
 
-sudo systemctl start docker
+- sudo systemctl start docker
+
+#### mariadb
+
+- mysql host : 172.19.0.2
+- user : admin
+- pwd : test
+- db : testfilm
 
 #### localhost
 
