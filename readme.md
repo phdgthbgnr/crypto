@@ -17,10 +17,12 @@
 
 #### mysql
 
-user: otherfilms,
-password: JHgfT765frSX,
-host: smeserver9,
-database: otherfilms_test,
+user: otherfilms
+password: JHgfT765frSX
+host: smeserver9
+database: otherfilms_test
+
+mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
 
 #### portainer
 
