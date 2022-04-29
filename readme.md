@@ -15,14 +15,16 @@
 
 #### smerver9
 
-#### mysql
+##### mysql
 
 user: otherfilms
 password: JHgfT765frSX
 host: smeserver9
 database: otherfilms_test
 
-mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
+- mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
+
+---
 
 #### portainer
 
@@ -39,7 +41,13 @@ mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > du
 - pwd : test
 - db : testfilm
 
+---
+
 #### localhost
+
+- http://localhost:8081
+
+---
 
 - https://cdnjs.com/libraries/crypto-js
 - https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
