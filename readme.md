@@ -22,6 +22,8 @@ password: JHgfT765frSX
 host: smeserver9
 database: otherfilms_test
 
+##### export from smeserver9 :
+
 - mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
 
 ---
