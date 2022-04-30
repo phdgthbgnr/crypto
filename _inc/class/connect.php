@@ -7,6 +7,8 @@ class connect
   private $user;
   private $pwd;
   private $sqlconn;
+  public $films = 'films';
+  public $path = 'paths';
 
   public function connect()
   {
