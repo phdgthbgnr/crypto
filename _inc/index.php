@@ -6,6 +6,8 @@ require './class/connect.php';
 
 $conn = new connect();
 
+$req = json_decode(file_get_contents('php://input'));
+
 $response = array(
   'status' => -1,
   'error' => 'sql error',
@@ -21,7 +23,7 @@ $res = $conn->execute_query(
   FROM 
   $conn->films as tb1 
   JOIN $conn->path as tb2 
-  ON tb2.id_path = tb1.filepathid  LIMIT 5"
+  ON tb2.id_path = tb1.filepathid  LIMIT 1"
 );
 
 if ($res) {
