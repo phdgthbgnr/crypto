@@ -45,9 +45,11 @@ database: otherfilms_test
 
 ---
 
-#### localhost
+#### Webpack
 
 - http://localhost:8081
+
+- https://www.robinwieruch.de/webpack-babel-setup-tutorial/
 
 ---
 
@@ -70,10 +72,6 @@ database: otherfilms_test
 - https://nitratine.net/blog/post/encryption-and-decryption-in-python/
 - https://cryptography.io/en/latest/hazmat/backends/#cryptography.hazmat.backends.default_backend
 - https://cryptography.io/en/latest/hazmat/primitives/symmetric-encryption/
-
-#### Webpack
-
-- https://www.robinwieruch.de/webpack-babel-setup-tutorial/
 
 #### Alpinejs
 
