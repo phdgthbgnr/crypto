@@ -7,7 +7,7 @@
     <title>testfilm</title>
   </head>
   <body>
-    <div x-data="Posts()">
+    <div x-data="Posts()" x-init="Posts()">
       <template x-for="post in Posts()">
         <h2 x-text="post.filename"></h2>
       </template>
