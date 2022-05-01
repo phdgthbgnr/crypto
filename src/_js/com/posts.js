@@ -12,19 +12,21 @@ export default () => ({
       { title: 'title 5' },
       { title: 'title 6' },
     ];
-    // let t = async function () {
-    //   try {
-    //     const resp = await axios.get('http://localhost:8081');
-    //     console.error(resp.data);
-    //     return resp.data;
-    //   } catch (err) {
-    //     // Handle Error Here
-    //     console.error(err);
-    //   }
-    // };
-    // return t;
   },
 });
+
+// let t = async function () {
+//   try {
+//     const resp = await axios.get('http://localhost:8081');
+//     console.error(resp.data);
+//     return resp.data;
+//   } catch (err) {
+//     // Handle Error Here
+//     console.error(err);
+//   }
+// };
+// return t;
+//},
 
 // Posts() {
 // return async () => {
