@@ -26,6 +26,17 @@ const Posts = () => {
       { id: 1, filename: 'toto1' },
       { id: 2, filename: 'toto2' },
     ],
+    init: async () => {
+      const res = await axios({
+        url: 'http://localhost:8081',
+        method: 'get',
+        timeout: 8000,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return res.data.payload;
+    },
   };
 };
 
