@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const getPosts = () => {
   return {
-    getPOsts: async () => {
+    getPosts: async () => {
       const res = await axios({
         url: 'http://localhost:8081',
         method: 'get',
