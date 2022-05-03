@@ -4,28 +4,25 @@
 'use strict';
 import axios from 'axios';
 
-const getPosts = () => {
-  return {
-    getPosts: async () => {
-      const res = await axios({
-        url: 'http://localhost:8081',
-        method: 'get',
-        timeout: 8000,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      return res.data.payload;
-    },
-  };
-};
+// const getPosts = () => {
+//   return {
+//     getPosts: async () => {
+//       const res = await axios({
+//         url: 'http://localhost:8081',
+//         method: 'get',
+//         timeout: 8000,
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       });
+//       return res.data.payload;
+//     },
+//   };
+// };
 
 const Posts = () => {
   return {
-    Posts: () => [
-      { id: 1, filename: 'toto1' },
-      { id: 2, filename: 'toto2' },
-    ],
+    Posts: () => [{ id: 1, filename: 'toto1' }, { id: 2, filename: 'toto2' }, { data: [] }],
     init: async () => {
       const res = await axios({
         url: 'http://localhost:8081',
@@ -40,4 +37,4 @@ const Posts = () => {
   };
 };
 
-export { Posts, getPosts };
+export { Posts };
