@@ -23,7 +23,7 @@ $res = $conn->execute_query(
   FROM 
   $conn->films as tb1 
   JOIN $conn->path as tb2 
-  ON tb2.id_path = tb1.filepathid  LIMIT 1"
+  ON tb2.id_path = tb1.filepathid  LIMIT 10"
 );
 
 if ($res) {
