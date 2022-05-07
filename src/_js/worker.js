@@ -1,4 +1,5 @@
 importScripts('crypto-js.js');
+
 function decrypt(data) {
   const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 

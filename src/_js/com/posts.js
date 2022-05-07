@@ -5,7 +5,6 @@
 import axios from 'axios';
 
 const Posts = () => ({
-  // return {
   data: [],
   Posts() {
     return this.data;
