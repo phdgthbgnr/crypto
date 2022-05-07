@@ -6,21 +6,28 @@ import axios from 'axios';
 
 const Posts = () => ({
   data: [],
+
   Posts() {
     return this.data;
   },
+
   init() {
     const req = async () => {
-      const res = await axios({
-        url: 'http://localhost:8081',
-        method: 'get',
-        timeout: 8000,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      this.data = res.data.payload;
+      try {
+        const res = await axios({
+          url: 'http://localhost:8081',
+          method: 'get',
+          timeout: 8000,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        this.data = res.data.payload;
+      } catch (e) {
+        // failure
+      }
     };
+
     req();
   },
 });
