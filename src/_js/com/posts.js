@@ -11,14 +11,18 @@ const Posts = () => ({
     return this.data;
   },
   init() {
-    axios({
-      url: 'http://localhost:8081',
-      method: 'get',
-      timeout: 8000,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then((res) => (this.data = res.data.payload));
+    const req = async () => {
+      const res = await axios({
+        url: 'http://localhost:8081',
+        method: 'get',
+        timeout: 8000,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      this.data = res.data.payload;
+    };
+    req();
   },
 });
 
