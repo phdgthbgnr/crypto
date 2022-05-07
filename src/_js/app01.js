@@ -168,6 +168,8 @@
     console.log('init thumb');
     let ii = b.length > nblocks ? nblocks : b.length;
     for (let i = 0; i < ii; i++) {
+      // https://v4.webpack.js.org/loaders/worker-loader/
+      // const worker = new Worker('sketchy.js', {type:'module'});
       const worker = new Worker('_js/worker.js');
       worker.onmessage = decryptFromWorker;
       worker.postMessage([
