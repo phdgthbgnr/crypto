@@ -29,6 +29,7 @@ const Posts = () => ({
     };
 
     req();
+    this.$watch('data', (value) => console.log('watch'));
   },
 });
 
