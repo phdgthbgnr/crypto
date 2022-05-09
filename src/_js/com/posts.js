@@ -5,11 +5,7 @@
 import axios from 'axios';
 
 const Posts = () => ({
-  data: [],
-
-  Posts() {
-    return this.data;
-  },
+  data: {},
 
   init() {
     const req = async () => {
@@ -22,14 +18,16 @@ const Posts = () => ({
             'Content-Type': 'application/json',
           },
         });
-        this.data = res.data.payload;
+        this.data = res.data;
+        console.log(this.data);
       } catch (e) {
         // failure
       }
     };
 
     req();
-    this.$watch('data', (value) => console.log('watch'));
+
+    // this.$watch('data', (value) => console.log(value));
   },
 });
 

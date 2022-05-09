@@ -7,9 +7,13 @@
     <title>testfilm</title>
   </head>
   <body>
-    <div x-data="Posts()" x-init="Posts()">
-      <template x-for="post in Posts()">
-        <p x-text="post.filename"></p>
+    <div x-data="Posts">
+      <div x-text="data.status"></div>
+      <div x-text="data.status"></div>
+      <template x-for="p in data.payload" :key="p.id">
+        <p x-text="p.filename"></p>
+        <p x-text="p.id"></p>
+        <p x-text="p.width"></p>
       </template>
     </div>
   </body>
