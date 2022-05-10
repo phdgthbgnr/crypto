@@ -8,9 +8,9 @@
   </head>
   <body>
     <div x-data="Posts">
-      <div x-text="data.status"></div>
+      <div x-text="datas.status"></div>
       <div>Error : <span x-text="data.error"></span></div>
-      <template x-for="data in data.payload" :key="data.id">
+      <template x-for="data in datas.payload" :key="data.id">
         <div id="datas" class="datas">
           <p x-text="data.id"></p>
           <p x-text="data.filename"></p>

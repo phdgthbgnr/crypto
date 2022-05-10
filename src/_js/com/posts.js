@@ -7,7 +7,7 @@
 import axios from 'axios';
 
 const Posts = () => ({
-  data: {},
+  datas: {},
 
   init() {
     const req = async () => {
@@ -20,7 +20,7 @@ const Posts = () => ({
             'Content-Type': 'application/json',
           },
         });
-        this.data = res.data;
+        this.datas = res.data;
       } catch (e) {
         // failure
       }
