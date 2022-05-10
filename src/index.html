@@ -9,11 +9,13 @@
   <body>
     <div x-data="Posts">
       <div x-text="data.status"></div>
-      <div x-text="data.status"></div>
-      <template x-for="p in data.payload" :key="p.id">
-        <p x-text="p.filename"></p>
-        <p x-text="p.id"></p>
-        <p x-text="p.width"></p>
+      <div>Error : <span x-text="data.error"></span></div>
+      <template x-for="data in data.payload" :key="data.id">
+        <div id="datas" class="datas">
+          <p x-text="data.id"></p>
+          <p x-text="data.filename"></p>
+          <p x-text="data.imagedata"></p>
+        </div>
       </template>
     </div>
   </body>

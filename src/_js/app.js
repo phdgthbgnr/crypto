@@ -5,6 +5,4 @@ import '../_css/style.scss';
 
 Alpine.data('Posts', Posts);
 
-console.log(Posts());
-
 Alpine.start();

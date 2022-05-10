@@ -41,7 +41,7 @@ if ($res) {
     array_push($data, $d);
   }
   $response['status'] = 1;
-  $response['error'] = '';
+  $response['error'] = 'ok';
   $response['payload'] = $data;
 }
 

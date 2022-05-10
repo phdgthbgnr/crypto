@@ -1,6 +1,8 @@
 // https://postsrc.com/posts/how-to-make-ajax-request-in-alpine-js
 // https://www.alpinetoolbox.com/
 // https://codepen.io/eddieebeling/pen/dyoZOBX
+// https://codewithhugo.com/alpinejs-x-for-with-objects/
+
 'use strict';
 import axios from 'axios';
 
@@ -19,7 +21,6 @@ const Posts = () => ({
           },
         });
         this.data = res.data;
-        console.log(this.data);
       } catch (e) {
         // failure
       }
