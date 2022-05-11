@@ -32,9 +32,7 @@ const Posts = () => ({
 
     req(this.index);
 
-    this.$watch('index', (value) => {
-      if (value > 0) req(value);
-    });
+    this.$watch('index', (value) => req(value));
   },
 });
 
