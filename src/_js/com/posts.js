@@ -8,10 +8,11 @@ import axios from 'axios';
 
 const Posts = () => ({
   datas: {},
-  search: 0,
+  index: 0,
 
   init() {
-    const req = async () => {
+    const req = async (i) => {
+      console.log(i);
       try {
         const res = await axios({
           url: 'http://localhost:8081',
@@ -27,9 +28,9 @@ const Posts = () => ({
       }
     };
 
-    req();
+    req(this.index);
 
-    this.$watch('search', (value) => console.log(value));
+    this.$watch('index', (value) => console.log(value));
   },
 });
 
