@@ -8,6 +8,7 @@ import axios from 'axios';
 
 const Posts = () => ({
   datas: {},
+  search: 0,
 
   init() {
     const req = async () => {
@@ -28,7 +29,7 @@ const Posts = () => ({
 
     req();
 
-    // this.$watch('data', (value) => console.log(value));
+    this.$watch('search', (value) => console.log(value));
   },
 });
 
