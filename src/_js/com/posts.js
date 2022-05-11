@@ -12,11 +12,13 @@ const Posts = () => ({
 
   init() {
     const req = async (i) => {
-      console.log(i);
       try {
         const res = await axios({
           url: 'http://localhost:8081',
-          method: 'get',
+          method: 'post',
+          data: {
+            index: i,
+          },
           timeout: 8000,
           headers: {
             'Content-Type': 'application/json',
@@ -30,7 +32,9 @@ const Posts = () => ({
 
     req(this.index);
 
-    this.$watch('index', (value) => console.log(value));
+    this.$watch('index', (value) => {
+      if (value > 0) req(value);
+    });
   },
 });
 
