@@ -8,7 +8,16 @@ import axios from 'axios';
 
 const Posts = () => ({
   datas: {},
+
   index: 0,
+
+  previous() {
+    console.log('previous');
+  },
+
+  next() {
+    console.log('next');
+  },
 
   init() {
     const req = async (i) => {
