@@ -12,11 +12,11 @@ const Posts = () => ({
   index: 0,
 
   previous() {
-    console.log('previous');
+    this.index = this.index-- < 0 ? 0 : this.index--;
   },
 
   next() {
-    console.log('next');
+    this.index = this.index++ > 10 ? 10 : this.index++;
   },
 
   init() {
