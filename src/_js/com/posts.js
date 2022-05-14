@@ -29,7 +29,7 @@ const Posts = () => ({
           method: 'post',
           data: {
             index: i,
-            nomposts: this.numPosts,
+            numPosts: this.numPosts,
           },
           timeout: 8000,
           headers: {
