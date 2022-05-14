@@ -10,6 +10,7 @@ const Posts = () => ({
   datas: {},
   requestDone: true,
   index: 0,
+  numPosts: 5, // number of posts to get from db
 
   previous() {
     if (this.requestDone) this.index = this.index-- < 0 ? 0 : this.index--;
@@ -28,6 +29,7 @@ const Posts = () => ({
           method: 'post',
           data: {
             index: i,
+            nomposts: this.numPosts,
           },
           timeout: 8000,
           headers: {
