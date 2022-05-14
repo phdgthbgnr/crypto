@@ -4,15 +4,26 @@ header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 
 require './class/connect.php';
 
+$response = array(
+  'error' => '',
+  'payload' => [],
+  'request' => '',
+  'status' => -1,
+);
+
+$requestType = $_SERVER['REQUEST_METHOD'];
+$response['request'] = $requestType;
+
+if ($requestType != 'POST') {
+  $response['error'] =  'request method not allowed';
+  $response['status'] = -1;
+  echo json_encode($response);
+  exit;
+}
+
 $conn = new connect();
 
 $req = json_decode(file_get_contents('php://input'));
-
-$response = array(
-  'status' => -1,
-  'error' => 'sql error',
-  'payload' => []
-);
 
 $data = array();
 
@@ -41,7 +52,7 @@ if ($res) {
     array_push($data, $d);
   }
   $response['status'] = 1;
-  $response['error'] = 'ok';
+  $response['error'] = '';
   $response['payload'] = $data;
 }
 
