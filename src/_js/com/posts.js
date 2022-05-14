@@ -8,19 +8,20 @@ import axios from 'axios';
 
 const Posts = () => ({
   datas: {},
-
+  requestDone: true,
   index: 0,
 
   previous() {
-    this.index = this.index-- < 0 ? 0 : this.index--;
+    if (this.requestDone) this.index = this.index-- < 0 ? 0 : this.index--;
   },
 
   next() {
-    this.index = this.index++ > 10 ? 10 : this.index++;
+    if (this.requestDone) this.index = this.index++ > 10 ? 10 : this.index++;
   },
 
   init() {
     const req = async (i) => {
+      this.requestDone = false;
       try {
         const res = await axios({
           url: 'http://localhost:8081',
@@ -36,6 +37,8 @@ const Posts = () => ({
         this.datas = res.data;
       } catch (e) {
         // failure
+      } finally {
+        this.requestDone = true;
       }
     };
 
