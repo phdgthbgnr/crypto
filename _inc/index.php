@@ -25,6 +25,13 @@ $conn = new connect();
 
 $req = json_decode(file_get_contents('php://input'));
 
+// try{
+//   $limit = intval($req->numPosts)
+// }catch{
+
+// }
+
+
 $data = array();
 
 $res = $conn->execute_query(
