@@ -15,7 +15,7 @@ $requestType = $_SERVER['REQUEST_METHOD'];
 $response['request'] = $requestType;
 
 if ($requestType != 'POST') {
-  $response['error'] =  'request method not allowed';
+  $response['error'] =  'Request method not allowed';
   $response['status'] = -1;
   echo json_encode($response);
   exit;
@@ -30,6 +30,15 @@ $req = json_decode(file_get_contents('php://input'));
 // }catch{
 
 // }
+
+$limit = is_numeric($req->numPosts) ? intval($req->numPosts) : -1;
+
+if ($limit == -1) {
+  $response['error'] =  'Number od posts ' . $req->numPosts . ' not allowed';
+  $response['status'] = -1;
+  echo json_encode($response);
+  exit;
+}
 
 
 $data = array();
