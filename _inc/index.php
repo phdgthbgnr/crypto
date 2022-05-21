@@ -34,7 +34,7 @@ $req = json_decode(file_get_contents('php://input'));
 $limit = is_numeric($req->numPosts) ? intval($req->numPosts) : -1;
 
 if ($limit == -1) {
-  $response['error'] =  'Number od posts ' . $req->numPosts . ' not allowed';
+  $response['error'] =  'Number of posts ' . $req->numPosts . ' not allowed';
   $response['status'] = -1;
   echo json_encode($response);
   exit;
