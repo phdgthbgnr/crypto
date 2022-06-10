@@ -25,12 +25,7 @@ $conn = new connect();
 
 $req = json_decode(file_get_contents('php://input'));
 
-// try{
-//   $limit = intval($req->numPosts)
-// }catch{
-
-// }
-
+$index =  is_numeric($req->index) ? intval($req->index) : -1;
 $limit = is_numeric($req->numPosts) ? intval($req->numPosts) : -1;
 
 if ($limit == -1) {
@@ -39,6 +34,15 @@ if ($limit == -1) {
   echo json_encode($response);
   exit;
 }
+
+if ($index == -1) {
+  $response['error'] =  'Index' . $req->index . ' not allowed';
+  $response['status'] = -1;
+  echo json_encode($response);
+  exit;
+}
+
+$offset = $limit * $index;
 
 
 $data = array();
@@ -50,7 +54,7 @@ $res = $conn->execute_query(
   FROM 
   $conn->films as tb1 
   JOIN $conn->path as tb2 
-  ON tb2.id_path = tb1.filepathid  LIMIT $limit"
+  ON tb2.id_path = tb1.filepathid LIMIT $limit OFFSET $offset"
 );
 
 if ($res) {
