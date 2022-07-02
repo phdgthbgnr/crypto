@@ -26,6 +26,11 @@ database: otherfilms_test
 
 - mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
 
+
+##### export in docker db :
+
+- docker exec -i testfilm_db_1 mysql -uadmin -ptest testfilm < dump-testfilm.sql
+
 ---
 
 #### portainer
