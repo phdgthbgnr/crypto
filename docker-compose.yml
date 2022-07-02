@@ -13,13 +13,12 @@ services:
   web:
     depends_on:
       - db
-    image: php7.4-mysql:latest
+    image: pensiero/apache-php-mysql:php7.4
     environment:
       - ALLOW_OVERRIDE=true
     working_dir: /var/www/html
     ports:
       - "8081:80"
     volumes:
-      - /home/userp/Documents/dockers/testfilm/vhosts/:/etc/apache2/sites-enabled
-      - /home/userp/Documents/dockers/testfilm/_inc/:/var/www/html
-  
+      - /home/user01/testfilm/vhosts/:/etc/apache2/sites-enabled
+      - /home/user01/testfilm/_inc/:/var/www/html
