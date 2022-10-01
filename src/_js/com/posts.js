@@ -5,6 +5,7 @@
 
 'use strict';
 import axios from 'axios';
+import decryptFromWorker from './decryptFromWorker';
 
 const Posts = () => ({
   datas: {},
