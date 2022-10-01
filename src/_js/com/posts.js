@@ -21,6 +21,7 @@ const Posts = () => ({
   },
 
   init() {
+    // fetch datas
     const req = async (i) => {
       this.requestDone = false;
       try {
@@ -46,6 +47,7 @@ const Posts = () => ({
 
     req(this.index);
 
+    // watch index
     this.$watch('index', (value) => req(value));
   },
 });
