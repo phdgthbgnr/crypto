@@ -1,4 +1,4 @@
-importScripts('crypto-js.js');
+import CryptoJS from 'crypto-js';
 
 function decrypt(data) {
   const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
@@ -21,26 +21,28 @@ function decrypt(data) {
   const key = CryptoJS.enc.Latin1.parse(master_key);
 
   // Decrypt
-  let plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext2 }, key, {
+  const plaintextArray = CryptoJS.AES.decrypt({ ciphertext: crypttext2 }, key, {
     iv: iv2,
     mode: CryptoJS.mode.CBC,
     padding: CryptoJS.pad.Pkcs7,
   });
 
   // Can be Utf8 too
-  decrypt_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
+  const decrypt_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
   const output_plaintext = decrypt_plaintext.replace(/\x0F|\x0E|\x01|\x02|\x03|\x04|\x05|\x06|\x06|\x07|\x08/g, '');
   return output_plaintext.trim();
 }
 
-onmessage = function (e) {
-  let results = [];
-  e.data.forEach((element) => {
-    let text = decrypt(element.cipher);
-    results.push({ text: text, id: element.id, type: element.type, domid: element.domid });
-  });
-  postMessage(results);
-  this.close();
+onmessage = (e) => {
+  if (Array.isArray(e.data)) {
+    let results = [];
+    e.data.forEach((element) => {
+      let text = decrypt(element.cipher);
+      results.push({ text: text, id: element.id, type: element.type });
+    });
+    postMessage(results);
+    close();
+  }
 };
 
 // var generateWorkerURL = function () {

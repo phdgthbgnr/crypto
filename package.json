@@ -6,8 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "webpack serve",
-    "build": "webpack build",
-    "watch": "webpack watch"
+    "build": "webpack build --mode=production",
+    "watch": "webpack watch --mode=development"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "alpinejs": "^3.9.6",
-    "axios": "^0.26.1"
+    "axios": "^0.26.1",
+    "crypto-js": "^4.1.1"
   }
 }

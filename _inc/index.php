@@ -63,6 +63,7 @@ if ($res) {
       'id' => $row->id_film,
       'filename' => $row->filename,
       'imagedata' => $row->imgencrypt,
+      'path' => $row->path_name,
       'width' => $row->width,
       'height' => $row->height,
       'size' => $row->filesize,

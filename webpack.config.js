@@ -5,10 +5,13 @@ const path = require('path');
 module.exports = {
   mode: 'development',
 
-  entry: './src/_js/app.js',
+  entry: {
+    app: ['./src/_js/app.js'],
+    worker: ['./src/_js/workers/worker.js'],
+  },
   output: {
     path: path.resolve(__dirname, './public'),
-    filename: 'script.js',
+    filename: '[name].js',
   },
 
   module: {
