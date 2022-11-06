@@ -34,15 +34,15 @@ function decrypt(data) {
 }
 
 onmessage = (e) => {
-  if (Array.isArray(e.data)) {
-    let results = [];
-    e.data.forEach((element) => {
-      let text = decrypt(element.cipher);
-      results.push({ text: text, id: element.id, type: element.type });
-    });
-    postMessage(results);
-    close();
-  }
+  // if (Array.isArray(e.data)) {
+  let results = [];
+  e.data.forEach((element) => {
+    let text = decrypt(element.cipher);
+    results.push({ text: text, id: element.id, type: element.type });
+  });
+  postMessage(results);
+  close();
+  // }
 };
 
 // var generateWorkerURL = function () {
