@@ -8,7 +8,7 @@ import axios from 'axios';
 import { decryptFromWorker } from './decryptFromWorker';
 
 const Posts = () => ({
-  datas: {},
+  datas: { error: '', payload: [{ id: 1, imagedata: 'kjkjkjj' }] },
   requestDone: true,
   index: 0,
   numPosts: '16', // number of posts to get from db
@@ -38,19 +38,13 @@ const Posts = () => ({
             'Content-Type': 'application/json',
           },
         });
-        // console.log(resp);
-        this.datas.payload = [];
-        decryptFromWorker(res.data.payload).then((response) => {
-          console.log('response ', response);
-          console.log('response ', response.length);
+
+        const response = await decryptFromWorker(res.data.payload).then((resp) => {
+          return resp;
         });
 
-        // .then((e) => {
-        //   console.log('e ', e);
-        //   this.datas.payload = e;
-        //   this.datas.error = res.data.error;
-        //   console.log();
-        // });
+        this.datas.error = res.data.error;
+        this.datas.payload = response;
       } catch (e) {
         // failure
       } finally {
