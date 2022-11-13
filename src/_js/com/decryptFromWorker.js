@@ -21,7 +21,7 @@ const decryptFromWorker = async (datas) => {
     resolve(result, 0);
   });
 
-  return Promise.all(promises);
+  return promises;
   // return result;
 };
 

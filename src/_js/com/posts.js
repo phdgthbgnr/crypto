@@ -40,11 +40,10 @@ const Posts = () => ({
         });
         // console.log(resp);
         this.datas.payload = [];
-        const toto = decryptFromWorker(res.data.payload).then((e) => {
-          return e;
+        decryptFromWorker(res.data.payload).then((response) => {
+          console.log('response ', response);
+          console.log('response ', response.length);
         });
-
-        console.log(toto);
 
         // .then((e) => {
         //   console.log('e ', e);
