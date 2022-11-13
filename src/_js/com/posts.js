@@ -38,8 +38,14 @@ const Posts = () => ({
             'Content-Type': 'application/json',
           },
         });
-        // console.log(res.data.payload);
-        decryptFromWorker(res.data.payload);
+        // console.log(resp);
+        this.datas.payload = [];
+        decryptFromWorker(res.data.payload).then((e) => {
+          console.log(e);
+          this.datas.payload.push(e);
+          this.datas.error = res.data.error;
+          console.log(this.datas);
+        });
       } catch (e) {
         // failure
       } finally {
