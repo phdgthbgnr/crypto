@@ -40,12 +40,18 @@ const Posts = () => ({
         });
         // console.log(resp);
         this.datas.payload = [];
-        decryptFromWorker(res.data.payload).then((e) => {
-          console.log(e);
-          this.datas.payload.push(e);
-          this.datas.error = res.data.error;
-          console.log(this.datas);
+        const toto = decryptFromWorker(res.data.payload).then((e) => {
+          return e;
         });
+
+        console.log(toto);
+
+        // .then((e) => {
+        //   console.log('e ', e);
+        //   this.datas.payload = e;
+        //   this.datas.error = res.data.error;
+        //   console.log();
+        // });
       } catch (e) {
         // failure
       } finally {

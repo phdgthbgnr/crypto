@@ -1,16 +1,16 @@
-async function decryptFromWorker(datas) {
-  let result = [];
-  await datas.forEach((e) => {
-    const promise = new Promise((resolve, reject) => {
+const decryptFromWorker = async (datas) => {
+  const promises = new Promise((resolve, reject) => {
+    let result = [];
+    datas.forEach(async (e) => {
       const worker = new Worker('worker.js', { type: 'module' });
       worker.onmessage = (el) => {
         let tempData = {};
-        el.data.forEach((d) => {
+        el.data.forEach(async (d) => {
           // console.log(d);
           tempData[d.type] = d.text;
           tempData['id'] = d.id;
         });
-        resolve(tempData, 0);
+        result.push(tempData);
       };
       worker.postMessage([
         { cipher: e.filename, type: 'filename', id: e.id },
@@ -18,9 +18,11 @@ async function decryptFromWorker(datas) {
         { cipher: e.path, type: 'path', id: e.id },
       ]);
     });
-    promise.then((e) => result.push(e));
+    resolve(result, 0);
   });
-  return result;
-}
+
+  return Promise.all(promises);
+  // return result;
+};
 
 export { decryptFromWorker };
