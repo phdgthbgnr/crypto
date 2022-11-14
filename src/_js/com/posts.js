@@ -8,7 +8,7 @@ import axios from 'axios';
 import { decryptFromWorker } from './decryptFromWorker';
 
 const Posts = () => ({
-  datas: { error: '', payload: [{ id: 1, imagedata: 'kjkjkjj' }] },
+  datas: { error: '', payload: [{ id: 0, imagedata: '' }] },
   requestDone: true,
   index: 0,
   numPosts: '16', // number of posts to get from db
