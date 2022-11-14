@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-function decrypt(data) {
+const decrypt = (data) => {
   const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 
   const rawData = atob(data);
@@ -31,7 +31,7 @@ function decrypt(data) {
   const decrypt_plaintext = CryptoJS.enc.Latin1.stringify(plaintextArray);
   const output_plaintext = decrypt_plaintext.replace(/\x0F|\x0E|\x01|\x02|\x03|\x04|\x05|\x06|\x06|\x07|\x08/g, '');
   return output_plaintext.trim();
-}
+};
 
 onmessage = (e) => {
   // if (Array.isArray(e.data)) {
