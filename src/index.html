@@ -19,13 +19,15 @@
       <button x-on:click="next">suiv</button>
       <div x-text="datas.status"></div>
       <div>Error : <span x-text="datas.error"></span></div>
-      <template x-for="data in datas.payload" :key="data.id">
-        <div id="datas" class="datas">
-          <p x-text="data.id"></p>
-          <p x-text="data.filename"></p>
-          <img :src="data.imagedata" />
-        </div>
-      </template>
+      <div id="contener" class="contener">
+        <template x-for="data in datas.payload" :key="data.id">
+          <div id="datas" class="datas">
+            <p x-text="data.id"></p>
+            <p x-text="data.filename"></p>
+            <img :src="data.imagedata" />
+          </div>
+        </template>
+      </div>
     </div>
   </body>
 </html>
