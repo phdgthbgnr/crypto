@@ -27,6 +27,7 @@ $req = json_decode(file_get_contents('php://input'));
 
 $index =  is_numeric($req->index) ? intval($req->index) : -1;
 $limit = is_numeric($req->numPosts) ? intval($req->numPosts) : -1;
+$sortby = $req->sortBy;
 
 if ($limit == -1) {
   $response['error'] =  'Number of posts ' . $req->numPosts . ' not allowed';
