@@ -11,7 +11,7 @@ const Posts = () => ({
   datas: { error: '', payload: [{ id: 0, imagedata: '' }] },
   requestDone: true,
   index: 0,
-  numPosts: '16', // number of posts to get from db
+  numPosts: '20', // number of posts to get from db
 
   previous() {
     if (this.requestDone) this.index = this.index-- < 0 ? 0 : this.index--;

@@ -21,10 +21,10 @@
       <div>Error : <span x-text="datas.error"></span></div>
       <div id="contener" class="contener">
         <template x-for="data in datas.payload" :key="data.id">
-          <div id="datas" class="datas">
-            <p x-text="data.id"></p>
-            <p x-text="data.filename"></p>
+          <div id="thumb" class="thumb">
             <img :src="data.imagedata" />
+            <p class="ids" x-text="data.id"></p>
+            <p class="title" x-text="data.filename"></p>
           </div>
         </template>
       </div>
