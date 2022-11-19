@@ -32,6 +32,7 @@ const Posts = () => ({
           data: {
             index: i,
             numPosts: this.numPosts,
+            sortBy: 'id',
           },
           timeout: 8000,
           headers: {
