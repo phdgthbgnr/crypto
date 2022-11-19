@@ -25,9 +25,21 @@
             <img :src="data.imagedata" />
             <p class="ids" x-text="data.id"></p>
             <p class="title" x-text="data.filename"></p>
+            <button @click="playVideo" :data-id="data.id" class="loadvideo" x-data="playVideo"></button>
           </div>
         </template>
       </div>
+    </div>
+    <div id="videos" class="videos">
+      <video controls id="videoPlayer">
+        <source src="" type="video/mp4" />
+        <track
+          label="English"
+          kind="subtitles"
+          src="http://192.168.1.49/films/2020/Empire.Of.Passion.1978/Empire.Of.Passion.1978.720p.BluRay.x264.vtt"
+          srclang="en"
+        />
+      </video>
     </div>
   </body>
 </html>
