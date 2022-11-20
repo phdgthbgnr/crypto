@@ -1,0 +1,15 @@
+export default () => ({
+  path: '',
+  videosRoot: 'http://192.168.1.11/films/',
+  loadvideo() {
+    this.path = this.videosRoot + this.data.path + this.data.filename;
+  },
+  init() {
+    this.path = this.videosRoot + this.data.path + this.data.filename;
+    // this.$watch('path', (value) => {
+    // });
+  },
+  get getPath() {
+    return this.path;
+  },
+});
