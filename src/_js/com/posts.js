@@ -18,7 +18,7 @@ const Posts = () => ({
   },
 
   next() {
-    if (this.requestDone) this.index = this.index++ > 10 ? 10 : this.index++;
+    if (this.requestDone) this.index = this.index++ > 4000 ? 4000 : this.index++;
   },
 
   init() {
