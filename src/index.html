@@ -37,7 +37,14 @@
       </div>
     </div>
 
-    <div id="videos" class="videos" x-data="initVideo" x-show="open" @set-path.window="path = $event.detail">
+    <div
+      id="videos"
+      class="videos"
+      x-data="initVideo"
+      x-show="open"
+      @set-path.window="path = $event.detail"
+      @click="close()"
+    >
       <span x-text="fullPath"></span>
       <video controls id="videoPlayer" x-ref="videoPlayer">
         <source :src="fullPath" type="video/mp4" />

@@ -11,9 +11,15 @@ export default () => ({
       this.open = true;
     });
   },
+
   get fullPath() {
     // console.log('get path ', this.path);
     this.videoPlayer.load();
     return this.path;
+  },
+
+  close() {
+    this.open = false;
+    this.path = '';
   },
 });
