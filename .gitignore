@@ -1,3 +1,4 @@
 **/node_modules
 /public
 *.sql
+encryptResults32.json
