@@ -25,4 +25,4 @@ services:
   test:
     image: ssh-test
     volumes:
-      - ~/.ssh:/home/user/.ssh:ro
+      - ~/.ssh:/home/user01/.ssh:ro
