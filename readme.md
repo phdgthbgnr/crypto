@@ -13,6 +13,11 @@
 - Username: < type your username >
 - Password: < type your password >
 
+### github
+
+- git push upstream update/fetchdata
+- git fetch --all
+
 #### smerver9
 
 ##### mysql
@@ -25,7 +30,6 @@ database: otherfilms_test
 ##### export from smeserver9 :
 
 - mysqldump -P 3306 -h localhost -u otherfilms -pJHgfT765frSX otherfilms_test > dump-testfilm.sql
-
 
 ##### export in docker db :
 
