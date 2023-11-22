@@ -6,11 +6,11 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: admin
       MYSQL_PASSWORD: test
-      MYSQL_DATABASE: testfilm
+      MYSQL_DATABASE: testfilm2
     ports:
       - '8889:3306'
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/dump-testfilm
+      - ./init.sql:/docker-entrypoint-initdb.d/dump-testfilm.sql
   web:
     depends_on:
       - db
@@ -23,7 +23,7 @@ services:
     volumes:
       - /home/user01/testfilm/vhosts/:/etc/apache2/sites-enabled
       - /home/user01/testfilm/_inc/:/var/www/html
-  test:
-    image: ssh-test
+  ssh:
+    build: .
     volumes:
-      - ~/.ssh/*:/home/user01/
+      - /home/user01/testfilm/id_ed25519.pub:/home/user01/.ssh/id_ed25519.pub
