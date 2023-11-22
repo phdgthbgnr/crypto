@@ -6,9 +6,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: admin
       MYSQL_PASSWORD: test
-      MYSQL_DATABASE: testfilm2
+      MYSQL_DATABASE: testfilm
     ports:
-      - '8889:3306'
+      - '8890:3306'
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/dump-testfilm.sql
   web:

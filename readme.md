@@ -33,7 +33,7 @@ database: otherfilms_test
 
 ##### export in docker db :
 
-- docker exec -i testfilm_db_1 mysql -uadmin -ptest testfilm < dump-testfilm.sql
+- docker exec -i testfilm-db-1 mysql -uadmin -ptest testfilm < dump-testfilm.sql
 
 ---
 
@@ -47,7 +47,7 @@ database: otherfilms_test
 
 #### mariadb
 
-- mysql host : 172.19.0.2
+- mysql host : 172.19.0.3
 - user : admin
 - pwd : test
 - db : testfilm
