@@ -10,7 +10,7 @@ services:
     ports:
       - '8889:3306'
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/dumptestfilm
+      - ./init.sql:/docker-entrypoint-initdb.d/dump-testfilm
   web:
     depends_on:
       - db
