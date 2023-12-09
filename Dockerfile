@@ -1,2 +1,2 @@
 FROM pensiero/apache-php-mysql:php7.4
-RUN docker-php-ext-install mysqli
+#RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
