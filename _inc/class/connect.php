@@ -13,8 +13,8 @@ class connect
   public function connect()
   {
     // docker
-    if ($_SERVER['SERVER_ADDR'] == '172.19.0.4') {
-      $this->host = '172.19.0.3';
+    if ($_SERVER['SERVER_ADDR'] == '172.19.0.3') {
+      $this->host = '172.19.0.2';
       $this->dbname = 'testfilm';
       $this->port = 3306;
       $this->user = 'admin';
