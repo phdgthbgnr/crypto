@@ -20,6 +20,11 @@
 
 #### smerver9
 
+#### debian WSL
+
+login : user01
+pwd : DbnXmA
+
 ##### mysql
 
 user: otherfilms
