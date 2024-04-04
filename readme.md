@@ -90,3 +90,7 @@ database: otherfilms_test
 #### Alpinejs
 
 - https://alpinejs.dev/essentials/installation
+
+#### npm
+
+- npm run start
