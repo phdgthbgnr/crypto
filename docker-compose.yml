@@ -1,5 +1,5 @@
 version: '3.5'
-name: testfilm2
+name: testfilm
 services:
   db:
     image: mariadb
@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: admin
       MYSQL_PASSWORD: test
-      MYSQL_DATABASE: testfilm2
+      MYSQL_DATABASE: testfilm
     ports:
       - '8890:3306'
     volumes:
