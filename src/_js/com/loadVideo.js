@@ -5,7 +5,7 @@ export default () => ({
   //   this.path = this.videosRoot + this.data.path + this.data.filename;
   // },
   init() {
-    this.path = this.videosRoot + this.data.path + this.data.filename;
+    this.path = `${this.videosRoot}${this.data.path}/${this.data.filename}`;
 
     this.$watch('path', (value) => {
       console.log('change ', value);
