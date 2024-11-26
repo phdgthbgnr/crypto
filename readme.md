@@ -13,9 +13,9 @@
 - Username: < type your username >
 - Password: < type your password >
 
-### github
+### github / smeserver
 
-- git push upstream update/fetchdata
+- git push all update/fetchdata
 - git fetch --all
 
 #### smerver9
