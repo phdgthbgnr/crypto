@@ -14,6 +14,7 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/dump-testfilm.sql
   web:
+    restart: always
     depends_on:
       - db
     image: pensiero/apache-php-mysql:php7.4
@@ -25,7 +26,7 @@ services:
     volumes:
       - /home/user01/testfilm/vhosts/:/etc/apache2/sites-enabled
       - /home/user01/testfilm/_inc/:/var/www/html
-  ssh:
-    build: .
-    volumes:
-      - /home/user01/testfilm/id_ed25519.pub:/home/user01/.ssh/id_ed25519.pub
+  # ssh:
+  #   build: .
+  #   volumes:
+  #     - /home/user01/testfilm/id_ed25519.pub:/home/user01/.ssh/id_ed25519.pub
