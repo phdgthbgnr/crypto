@@ -8,14 +8,14 @@ class connect
   private $pwd;
   private $sqlconn;
   public $films = 'films';
-  public $path = 'paths';
-  public $poster = "posters";
+  public $paths = 'paths';
+  public $posters = "posters";
 
   public function connect()
   {
     // docker
-    if ($_SERVER['SERVER_ADDR'] == '172.19.0.3') {
-      $this->host = '172.19.0.2';
+    if ($_SERVER['SERVER_ADDR'] == '172.19.0.2') {
+      $this->host = '172.19.0.3';
       $this->dbname = 'testfilm';
       $this->port = 3306;
       $this->user = 'admin';
