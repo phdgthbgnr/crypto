@@ -13,7 +13,7 @@ const decryptFromWorker = async (datas) => {
           // console.log(d);
           switch (d.type) {
             case 'imagedata':
-              tempData[d.type] = 'data:image/jpeg;charset=latin1;base64, ' + d.text;
+              tempData[d.type] = 'data:image/jpeg;charset=latin1;base64,' + d.text;
               break;
             default:
               tempData[d.type] = d.text;
