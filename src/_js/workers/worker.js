@@ -4,6 +4,7 @@ const decrypt = (data) => {
   const master_key = 'M48sXt5HTWpLhHpa_4j2_cF2kNJ6A6Lj'; //32
 
   const rawData = atob(data);
+  // const rawData = data.toString('base64'); //Buffer.from(data, 'base64');
   const iv = rawData.substring(0, 16);
   const crypttext = rawData.substring(16);
 
