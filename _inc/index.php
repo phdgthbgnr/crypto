@@ -50,13 +50,15 @@ $offset = $limit * $index;
 $data = array();
 
 $res = $conn->execute_query(
-  "SELECT tb1.*, tb1.filepathid, tb2.*, tb3.* , tb3.film_id 
+  // "SELECT tb1.*, tb1.filepathid, tb2.*, tb3.* , tb3.film_id 
+  "SELECT tb1.*, tb2.*, tb3.*  
   FROM 
   $conn->films as tb1 
   INNER JOIN $conn->paths as tb2 
   ON tb2.id_path = tb1.filepathid 
   INNER JOIN $conn->posters as tb3 
-  ON tb3.film_id = tb1.id_film LIMIT $limit OFFSET $offset"
+  ON tb1.id_film = tb3.film_id LIMIT $limit OFFSET $offset"
+  // ON tb1.id_film = tb3.film_id GROUP BY tb3.film_id LIMIT $limit OFFSET $offset"
 );
 
 if ($res) {
