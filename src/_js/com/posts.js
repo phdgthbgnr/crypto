@@ -44,7 +44,6 @@ const Posts = () => ({
 
         await decryptFromWorker(res.data.payload).then((resp) => {
           this.datas.payload = resp;
-          console.log(resp);
         });
       } catch (e) {
         // failure
