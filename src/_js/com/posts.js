@@ -14,11 +14,11 @@ const Posts = () => ({
   numPosts: '14', // number of posts to get from db
 
   previous() {
-    if (this.requestDone) this.index = this.index-- < 0 ? 0 : this.index--;
+    if (this.requestDone) this.index = this.index-- <= 0 ? 0 : this.index;
   },
 
   next() {
-    if (this.requestDone) this.index = this.index++ > 4000 ? 4000 : this.index++;
+    if (this.requestDone) this.index = this.index++ > 4000 ? 4000 : this.index;
   },
 
   init() {
@@ -40,12 +40,12 @@ const Posts = () => ({
           },
         });
 
-        const response = await decryptFromWorker(res.data.payload).then((resp) => {
-          return resp;
-        });
-
         this.datas.error = res.data.error;
-        this.datas.payload = response;
+
+        await decryptFromWorker(res.data.payload).then((resp) => {
+          this.datas.payload = resp;
+          console.log(resp);
+        });
       } catch (e) {
         // failure
       } finally {
@@ -56,7 +56,9 @@ const Posts = () => ({
     req(this.index);
 
     // watch index
-    this.$watch('index', (value) => req(value));
+    this.$watch('index', (value) => {
+      req(value);
+    });
   },
 });
 
